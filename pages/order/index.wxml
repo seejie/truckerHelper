@@ -1,0 +1,127 @@
+<import src="../template/tips/index.wxml"/>
+
+<view class="wrapper">
+  <view class="tabController">
+    <view class="tab {{currTab === 'order' ? 'selected' : ''}}"
+      data-tab="order" bindtap="onTabChanged">
+      <van-icon name="orders-o" size="40" color="#aaa"/>
+      添加订单
+    </view>
+    
+    <view class="tab {{currTab === 'depart' ? 'selected' : ''}}"
+      data-tab="depart" bindtap="onTabChanged">
+      <van-icon name="orders-o" size="40" color="#aaa" />
+      发车
+    </view>
+
+    <view class="tab {{currTab === 'arrive' ? 'selected' : ''}}"
+      data-tab="arrive" bindtap="onTabChanged">
+      <van-icon name="orders-o" size="40" color="#aaa" />
+      到达
+    </view>
+
+    <view class="tab {{currTab === 'queue' ? 'selected' : ''}}"
+      data-tab="queue" bindtap="onTabChanged">
+      <van-icon name="orders-o" size="40" color="#aaa" />
+      叫号
+    </view>
+
+    <view class="tab {{currTab === 'unload' ? 'selected' : ''}}"
+      data-tab="unload" bindtap="onTabChanged">
+      <van-icon name="orders-o" size="40" color="#aaa" />
+      卸货
+    </view>
+  </view>
+
+  <view class="pageController">
+    <view class="page {{currTab === 'order' ? 'selected' : ''}}">
+
+      <template is="tips" data="{{txt: '请仔细检查物料的装运情况，待装车完毕后，请扫描装运单条码后，点击“确认发车”'}}"/>
+
+      <view class="input-order">
+        <input type="text" class="input" placeholder="请扫描订单或手动输入"/>
+        <view bindtap="onscanCode">扫一扫</view>
+      </view>
+
+      <view class="btn" bindtap="addOrder">添加订单</view>
+    </view>
+    
+    <view class="page {{currTab === 'depart' ? 'selected' : ''}}">
+      <view class="cell">订单编号：{{orderId}}</view>
+      <view class="cell">送货地址：{{address}}</view>
+      <view class="cell">要求到达时间：{{arriveTime}}</view>
+
+      <view class="cell detail">
+        订单物料明细：
+        <view class="table">
+          <view class="row thead">
+            <view class="col">行号</view>
+            <view class="col">物料名称</view>
+            <view class="col">送货数量</view>
+            <view class="col">单位</view>
+          </view>
+
+          <view class="row">
+            <view class="col">1</view>
+            <view class="col">2</view>
+            <view class="col">3</view>
+            <view class="col">4</view>
+          </view>
+
+          <view class="row">
+            <view class="col">1</view>
+            <view class="col">2</view>
+            <view class="col">3</view>
+            <view class="col">4</view>
+          </view>
+
+        </view>
+      </view>
+
+      <van-checkbox value="{{ doubleConfirm }}" 
+        class="checkbox"
+        bind:change="onConfirmChange">
+          装车物料数量确认完毕
+      </van-checkbox>
+
+      <view class="btn" bindtap="ondepart">发车</view>
+    </view>
+
+    <view class="page arrive {{currTab === 'arrive' ? 'selected' : ''}}">
+      <view class="cell">当前位置：{{currLoc}}</view>
+      <view class="cell">送货地址：{{deliverAddr}}</view>
+      <view class="cell">距离送货地址：{{distance}}</view>
+
+      <template is="tips" data="{{txt: '您当前已经位于送货地点附近，系统已经自动报告您的位置，请等待叫号。叫号信息将通过个人微信的消息通知和短消息推送给您，请注意查收'}}"/>
+
+      <map
+        id="map"
+        style="width: 100%; height: 300px;"
+        latitude="{{latitude}}"
+        longitude="{{longitude}}"
+        markers="{{markers}}"
+        covers="{{covers}}"
+      />
+    </view>
+
+    <view class="page queue {{currTab === 'queue' ? 'selected' : ''}}">
+      <template is="tips" data="{{txt: '请前往指定道口卸货'}}"/>
+      <view class="cell">叫号时间：{{queueTime}}</view>
+
+      <view class="queue-number">
+        2
+      </view>
+      
+      <view class="order-info">
+        <view class="cell">
+          订单编号：
+          <view class="order-number">{{orderId}}</view>
+        </view>
+      </view>
+    </view>
+
+    <view class="page {{currTab === 'unload' ? 'selected' : ''}}">
+      5
+    </view>
+  </view>
+</view>

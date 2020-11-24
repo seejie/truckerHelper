@@ -1,0 +1,9 @@
+<import src="../template/tips/index.wxml" />
+
+<view class="wrapper">
+  <template is="tips" data="{{txt: '请录入本次送货人员的基本信息'}}"/>
+
+  <view class="btn" bindtap="onCheckIn">
+    开始录入人员基本信息
+  </view>
+</view>

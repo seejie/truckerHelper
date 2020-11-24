@@ -1,0 +1,31 @@
+/* 页面容器 */
+.wrapper{
+  height: 100vh;
+  position: relative;
+  background-color: #f6f6f6;
+}
+
+/* 提示信息 */
+.tips{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3vw 0;
+  color: rgb(80, 80, 80);
+}
+
+/* 提示图标 */
+.icon-box-img{
+  margin-right: 2vw;
+}
+
+/* 主要功能按钮 */
+.btn{ 
+  background-color: rgba(44, 60, 203, 1);
+  border-radius: 15px;
+  text-align: center;
+  color: #fff;
+  padding: 8px 0;
+  width: 90vw;
+  letter-spacing: 1vw;
+}

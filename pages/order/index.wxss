@@ -1,0 +1,137 @@
+.wrapper{
+  display: flex;
+  flex-direction: column;
+}
+
+.tabController{
+  border-top: 1px solid #333;
+  border-bottom: 1px solid #333;
+  display: flex;
+  justify-content: space-around;
+  padding: 3vw;
+}
+
+.tab{
+  color: #aaa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.tab.selected{
+  color: #447de2;
+}
+
+.pageController{
+  flex: 1;
+  background-color: #fff;
+}
+
+.page{
+  display: none;
+}
+
+.page.selected{
+  display: block;
+}
+
+/* 添加订单 */
+.tips{
+  width: 80vw;
+  margin: 10vh auto;
+}
+
+.input-order{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input{
+  border: 1px solid #aaa;
+  padding: 4px 6px;
+  border-radius: 4px;
+  margin-right: 5vw;
+}
+
+.btn{
+  margin: 10vh auto;
+}
+
+/* 发车 */
+.cell{
+  padding: 1.5vw 3vw;
+  display: flex;
+  color: #505050;
+  font-size: 14px;
+}
+
+.cell.detail {
+  flex-direction: column;
+}
+
+.table{
+  display: flex;
+  margin: 2vw 0;
+  border: 1px solid #aaa;
+  flex-direction: column;
+}
+
+.row {
+  display: flex;
+  padding: 2vw 0;
+}
+
+.row + .row{
+  border-top: 1px solid #aaa;
+}
+
+.col {
+  flex: 1;
+  text-align: center;
+}
+
+.col + .col {
+  border-left: 1px solid #aaa;
+}
+
+.thead{
+  flex: 1;
+  display: flex;
+  font-weight: 500;
+  color: #333;
+}
+
+.checkbox{
+  display: flex;
+  padding: 0 2vw;
+}
+
+/* 到达 */
+.arrive .tips{
+  width: 90vw;
+  margin: 0 auto;
+}
+
+#map{
+
+}
+
+/* 叫号 */
+.queue .tips{
+  width: 90vw;
+  margin: 0 auto;
+}
+
+.queue-number{
+  color: red;
+  font-weight: 700;
+  font-size: 90px;
+  text-align: center;
+  padding: 10vh;
+}
+
+.order-number{
+  color: #333;
+  display: block;
+}

@@ -1,0 +1,7 @@
+<import src="../template/tips/index.wxml" />
+
+<view class="wrapper">
+  <template is="tips" data="{{txt: '您最近 10 天内，还没有参加或通过培训考试，无法扫描装运单，请于下方指引观看培训资料，并参加考试'}}"/>
+
+  <view class="btn" bindtap="onTraining">开始参加培训</view>
+</view>

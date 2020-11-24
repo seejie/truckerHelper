@@ -1,0 +1,13 @@
+.submit{
+  position: absolute;
+  bottom: 5vw;
+  left: 5vw;
+}
+
+.upload{
+  display: flex;
+}
+
+.label{
+  color: #646566;
+}

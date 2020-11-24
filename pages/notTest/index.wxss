@@ -1,0 +1,13 @@
+.tips{
+  max-width: 80vw;
+  position: absolute;
+  left: 10vw;
+  top: 30vw;
+}
+
+.btn{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

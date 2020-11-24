@@ -1,0 +1,3 @@
+<view class="wrapper">
+  <view class="btn" bindtap="onExam">开始考试</view>
+</view>
