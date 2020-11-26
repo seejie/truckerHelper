@@ -2,11 +2,11 @@
 Page({
 
   data: {
-    // currTab: 'order',
+    currTab: 'order',
     // currTab: 'depart',
     // currTab: 'arrive',
     // currTab: 'queue',
-    currTab: 'unload',
+    // currTab: 'unload',
     // 发车
     orderId: '121212',
     address: '上海市松江区***',

@@ -22,7 +22,7 @@ Page({
 
   // 开始考试
   onExam () {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/exam/index',
     })
   }

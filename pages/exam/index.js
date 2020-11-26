@@ -17,7 +17,7 @@ Page({
 
   // 结束考试
   onSubmit () {
-    wx.navigateTo({
+    wx.redirectTo({
       url: '/pages/order/index',
     })
   }
