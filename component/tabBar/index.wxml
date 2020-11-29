@@ -1,0 +1,36 @@
+<view class="wrapper">
+  <view class="tab {{currTab === 'add' ? 'active' : ''}}"
+    data-key="add" bindtap="switchTab">
+    <image class="tab-icon" 
+      src="../../img/tab-add{{currTab === 'add' ? '-active' : ''}}.png"></image>
+    添加
+  </view>
+
+  <view class="tab {{currTab === 'depart' ? 'active' : ''}}"
+    data-key="depart" bindtap="switchTab">
+    <image class="tab-icon" 
+      src="../../img/tab-depart{{currTab === 'depart' ? '-active' : ''}}.png"></image>
+    发车
+  </view>
+
+  <view class="tab {{currTab === 'arrive' ? 'active' : ''}}"
+    data-key="arrive" bindtap="switchTab">
+    <image class="tab-icon" 
+      src="../../img/tab-arrive{{currTab === 'arrive' ? '-active' : ''}}.png"></image>
+    到达
+  </view>
+
+  <view class="tab {{currTab === 'queue' ? 'active' : ''}}"
+    data-key="queue" bindtap="switchTab">
+    <image class="tab-icon" 
+      src="../../img/tab-queue{{currTab === 'queue' ? '-active' : ''}}.png"></image>
+    叫号
+  </view>
+
+  <view class="tab {{currTab === 'unload' ? 'active' : ''}}"
+    data-key="unload" bindtap="switchTab">
+    <image class="tab-icon" 
+      src="../../img/tab-unload{{currTab === 'unload' ? '-active' : ''}}.png"></image>
+    卸货
+  </view>
+</view>

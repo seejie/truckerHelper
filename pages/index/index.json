@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "sideBar": "../../component/sideBar"
+  },
   "navigationBarTitleText": "订单发货系统"
 }

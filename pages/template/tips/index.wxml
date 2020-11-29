@@ -1,6 +1,0 @@
-<template name="tips">
-  <view class="tips">
-    <icon class="icon-box-img" type="info"></icon>
-    {{txt}}
-  </view>
-</template>

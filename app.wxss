@@ -11,21 +11,26 @@
   align-items: center;
   justify-content: center;
   padding: 3vw 0;
-  color: rgb(80, 80, 80);
+  color: #9B9B9B;
+  font-size: 26rpx;
 }
 
 /* 提示图标 */
-.icon-box-img{
-  margin-right: 2vw;
+.tips-icon{
+  width: 32rpx;
+  height: 32rpx;
+  margin-right: 12rpx;
 }
 
 /* 主要功能按钮 */
 .btn{ 
-  background-color: rgba(44, 60, 203, 1);
-  border-radius: 15px;
+  background-color: #000099;
+  border-radius: 4px;
   text-align: center;
   color: #fff;
-  padding: 8px 0;
-  width: 90vw;
-  letter-spacing: 1vw;
+  width: 690rpx;
+  height: 88rpx;
+  line-height: 88rpx;
+  letter-spacing: 4rpx; 
+  font-size: 18px;
 }

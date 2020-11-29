@@ -1,0 +1,20 @@
+.order-card{
+  background-color: #fff;
+  padding: 0 30rpx;
+  margin-top: 30rpx;
+}
+
+.title{
+  padding: 34rpx 0;
+  font-size: 30rpx;
+  color: #999;
+}
+
+.order{
+  font-size: 60rpx;
+  color: #000099;
+  font-weight: 500;
+  border-top: 1rpx solid #f5f5f5;
+  text-align: center;
+  padding: 52rpx 0;
+}

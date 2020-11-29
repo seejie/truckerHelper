@@ -1,9 +1,9 @@
-<import src="../template/tips/index.wxml" />
-
 <view class="wrapper">
-  <template is="tips" data="{{txt: '请录入本次送货人员的基本信息'}}"/>
-
+  <image class="icon" src="../../img/index-logo.png"></image>
+  <view class="txt">请录入本次送货人员的基本信息</view>
   <view class="btn" bindtap="onCheckIn">
     开始录入人员基本信息
   </view>
+
+  <sideBar />
 </view>

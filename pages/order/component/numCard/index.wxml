@@ -1,0 +1,15 @@
+<view class="num-card">
+  <view class="title">
+    <image class="img" src="../../../../img/info.png"></image>
+    卸货通道，请前往指定道口卸货
+  </view>
+  
+  <view class="content">
+    <view class="number">
+      2
+    </view>
+    <view class="time">
+      叫号时间：2020-10-14 16:20:23
+    </view>
+  </view>
+</view>

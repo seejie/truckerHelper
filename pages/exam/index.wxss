@@ -1,6 +1,16 @@
 
+.wrapper{
+  display: flex;
+}
+
+.main{
+  margin-bottom: 150rpx;
+  padding: 30rpx;
+  overflow-y: scroll;
+}
+
 .btn{
   position: absolute;
-  left: 5vw;
-  bottom: 5vw;
+  left: 30rpx;
+  bottom: 30rpx;
 }

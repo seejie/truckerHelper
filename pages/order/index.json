@@ -1,4 +1,11 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "tabBar": "../../component/tabBar",
+    "addOrder": "./tab/addOrder",
+    "depart": "./tab/depart",
+    "arrive": "./tab/arrive",
+    "queue": "./tab/queue",
+    "unload": "./tab/unload"
+  },
   "navigationBarTitleText": "订单发货系统"
 }

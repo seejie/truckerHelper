@@ -1,0 +1,20 @@
+<view class="arrive-wrapper">
+  <infoCard />
+  
+  <view class="tips">
+    <image class="tips-icon" src="../../../../img/info.png"></image>
+    您当前已经位于送货地点附近，系统已经自动报告您的位置，请等待叫号。叫号信息将通过个人微信的消息通知和短消息推送给您，请注意查收
+  </view>
+
+  <view class="container">
+    <map
+      id="map"
+      class="map"
+      style="width: 100%;"
+      latitude="{{latitude}}"
+      longitude="{{longitude}}"
+      markers="{{markers}}"
+      covers="{{covers}}"
+    />
+  </view>
+</view>

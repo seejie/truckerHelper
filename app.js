@@ -5,7 +5,7 @@ App({
   },
 
   onLaunch () {
-    this.debug()
+    // this.debug()
     this.checkUserSession()
 
     // 登录

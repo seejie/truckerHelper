@@ -1,0 +1,5 @@
+<view class="info">
+  您已进入厂区，请按规定车道行驶
+</view>
+<numCard />
+<orderCard />

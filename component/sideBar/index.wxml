@@ -1,0 +1,10 @@
+<view class="wrapper">
+  <view class="icon-bar {{currTab === 'order' ? 'active' : ''}}" bindtap="switchOrderPage">
+    <image class="img" src="{{orderImg}}"></image>
+    订单
+  </view>
+  <view class="icon-bar" bindtap="switchMyPage">
+    <image class="img" src="../../img/my.png"></image>
+    我的
+  </view>
+</view>

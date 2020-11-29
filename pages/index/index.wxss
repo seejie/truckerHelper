@@ -1,7 +1,18 @@
-.tips{
+.icon{
+  width: 152rpx;
+  height: 140rpx;
   position: absolute;
-  top: 25vh;
-  width: 100vw;
+  left: 50%;
+  top: 140rpx;
+  transform: translateX(-50%);
+}
+
+.txt{
+  position: absolute;
+  top: 322rpx;
+  color: #333;
+  width: 100%;
+  text-align: center;
 }
 
 .btn{
@@ -9,5 +20,4 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-size: 16px;
 }

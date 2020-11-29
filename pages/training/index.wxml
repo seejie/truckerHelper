@@ -1,3 +1,11 @@
 <view class="wrapper">
+  <view class="main">
+    <view class="title">
+      题目标题一
+    </view>
+    <view class="content">
+      正文内容，段落分行显示，正文内容，段落分行显示，正文内容，段落分行显示，正文内容，段落分行显示，正文内容，段落分行显示，
+    </view>
+  </view>
   <view class="btn" bindtap="onExam">开始考试</view>
 </view>

@@ -1,0 +1,50 @@
+@import '../../../../app.wxss';
+
+.title{
+  font-size: 28rpx;
+  color: #888;
+  padding: 0 30rpx;
+}
+
+.table{
+  display: flex;
+  background-color: #fff;
+  padding: 0 30rpx;
+  margin: 22rpx 0;
+  flex-direction: column;
+  font-size: 34rpx;
+}
+
+.row{
+  padding: 24rpx 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+.row + .row{
+  border-top: 1rpx solid #e5e5e5;
+}
+
+.thead{
+  font-weight: 500;
+}
+
+.td{
+  flex: 1;
+  text-align: center;
+}
+
+.checkbox{
+  display: flex;
+  padding: 0 30rpx;
+  font-size: 26rpx;
+  margin: 44rpx 0;
+}
+
+.label{
+  color: #9b9b9b !important;
+}
+
+.btn{
+  margin: 0 auto;
+}

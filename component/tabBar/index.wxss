@@ -1,0 +1,25 @@
+.wrapper{
+  display: flex;
+  justify-content: space-around;
+  background-color: #fff;
+  margin: 30rpx 0;
+}
+
+.tab{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  color: #333;
+  font-size: 32rpx;
+  height: 180rpx;
+}
+
+.tab.active{
+  color: #000099;
+  border-bottom: 6rpx solid #000099;
+}
+
+.tab-icon{
+  width: 60rpx;
+  height: 60rpx;
+}

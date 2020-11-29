@@ -1,3 +1,7 @@
 <view class="wrapper">
+  <view class="main">
+    
+  </view>
+
   <view class="btn" bindtap="onSubmit">结束考试</view>
 </view>

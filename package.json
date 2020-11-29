@@ -1,0 +1,24 @@
+{
+  "name": "driver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/seejie/truckerHelper.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/seejie/truckerHelper/issues"
+  },
+  "homepage": "https://github.com/seejie/truckerHelper#readme",
+  "dependencies": {
+    "miniprogram-computed": "^2.2.0",
+    "mobx-miniprogram": "^4.13.2",
+    "mobx-miniprogram-bindings": "^2.0.0"
+  }
+}

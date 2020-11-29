@@ -1,8 +1,17 @@
-.tips{
-  max-width: 80vw;
+.icon-box-img{
   position: absolute;
-  left: 10vw;
-  top: 30vw;
+  left: 50%;
+  top: 144rpx;
+  transform: translateX(-50%);
+}
+
+.info{
+  color: #888;
+  font-size: 28rpx;
+  margin: 0 92rpx;
+  text-align: justify;
+  position: absolute;
+  top: 400rpx;
 }
 
 .btn{
