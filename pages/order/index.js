@@ -1,10 +1,10 @@
 Page({
   data: {
-    // currTab: 'add',
+    currTab: 'add',
     // currTab: 'depart',
     // currTab: 'arrive',
     // currTab: 'queue',
-    currTab: 'unload',
+    // currTab: 'unload',
   },
 
   onLoad (options) {

@@ -88,6 +88,12 @@
           "pathName": "pages/order/index",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "承诺书",
+          "pathName": "pages/promise/index",
+          "query": "",
+          "scene": null
         }
       ]
     }

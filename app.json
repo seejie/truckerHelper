@@ -6,7 +6,8 @@
     "pages/notTest/index",
     "pages/exam/index",
     "pages/order/index",
-    "pages/my/index"
+    "pages/my/index",
+    "pages/promise/index"
   ],
   "window":{
     "backgroundTextStyle":"light",
@@ -18,7 +19,8 @@
   "sitemapLocation": "sitemap.json",
   "usingComponents": {
     "van-uploader": "vant/uploader/index",
-    "van-checkbox": "vant/checkbox/index"
+    "van-checkbox": "vant/checkbox/index",
+    "van-toast": "vant/toast/index"
   },
   "permission": {
     "scope.userLocation": {

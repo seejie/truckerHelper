@@ -23,7 +23,8 @@ Page({
   onsubmit () {
     console.log('提交')
     wx.redirectTo({
-      url: '/pages/notTest/index',
+      url: '/pages/promise/index',
+      // url: '/pages/notTest/index',
       // url: '/pages/training/index',
     })
   }

@@ -1,0 +1,38 @@
+.wrapper{
+  display: flex;
+  background-color: #fff;
+}
+
+.main{
+  padding: 30rpx;
+  background-color: #fff;
+  overflow-y: scroll;
+  height: calc(100vh - 88rpx - 30rpx - 88rpx);
+}
+
+.title{
+  color: #000;
+  font-size: 36rpx;
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 10rpx;
+}
+
+.note{
+  font-size: 30rpx;
+  font-weight: 500;
+}
+
+.content{
+  line-height: 40rpx;
+  color: #353535;
+  font-size: 28rpx;
+  white-space: pre-line;
+  margin: 20rpx 0;
+}
+
+.btn{
+  position: absolute;
+  bottom: 30rpx;
+  left: 30rpx;
+}
