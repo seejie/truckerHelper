@@ -27,12 +27,35 @@
   padding: 11rpx 30rpx;
   justify-content: space-between;
   margin-bottom: 30rpx;
+  align-items: center;
+}
+
+.input-group{
+  display: flex;
+  position: relative;
+}
+
+.box.first{
+  border-right: 0;
+}
+.line {
+  position: absolute;
+  width: 1rpx;
+  height: 80%;
+  left: 50%;
+  top: 10%;
+  background-color: #bfbfbf;
+}
+
+.box.last{
+  border-left: 0;
 }
 
 .box{
   width: 76rpx;
   height: 66rpx;
   border: 1rpx solid #bfbfbf;
+  text-align: center;
 }
 
 view.box{
@@ -43,6 +66,14 @@ view.box{
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+view.dot{
+  background-color: #BFBFBF;
+  height: 8rpx;
+  width: 8rpx;
+  border-radius: 4rpx;
+  margin: 0 2rpx;
 }
 
 .row{

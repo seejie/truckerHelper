@@ -3,13 +3,24 @@
 <view class="wrapper">
   <text class="title">请输入车牌号</text>
   <view class="pannel carNum">
-    <input type="text" class="box" />
-    <input type="text" class="box" />
-    <input type="text" class="box" />
-    <input type="text" class="box" />
-    <input type="text" class="box" />
-    <input type="text" class="box" />
-    <input type="text" class="box" />
+    <view class="input-group">
+      <input type="text" class="box first" maxlength="1" 
+        bindinput="onCarNumChanged" data-idx="1" />
+      <view class="line"></view>
+      <input type="text" class="box last" maxlength="1" 
+        bindinput="onCarNumChanged" data-idx="2" />
+    </view>
+    <view class="dot"></view>
+    <input type="text" class="box" maxlength="1" 
+      bindinput="onCarNumChanged" data-idx="3" />
+    <input type="text" class="box" maxlength="1" 
+      bindinput="onCarNumChanged" data-idx="4" />
+    <input type="text" class="box" maxlength="1"
+     bindinput="onCarNumChanged" data-idx="5" />
+    <input type="text" class="box" maxlength="1"
+     bindinput="onCarNumChanged" data-idx="6" />
+    <input type="text" class="box" maxlength="1"
+     bindinput="onCarNumChanged" data-idx="7" />
     <view class="box">新能源</view>
   </view>
 
@@ -18,6 +29,9 @@
       <view class="label">手机号</view>
       <view class="input">
         <input type="text" value="{{ tel }}" 
+          type="number"
+          maxlength="11"
+          bindinput="onTelChanged"
           placeholder="请输入手机号"
           placeholder-style="color: #B2B2B2;" />
       </view>
@@ -26,6 +40,9 @@
       <view class="label">身份证号</view>
       <view class="input">
         <input type="text" value="{{ idCard }}" 
+          type="idcard"
+          maxlength="18"
+          bindinput="onIdCardChanged"
           placeholder="请输入身份证号码"
           placeholder-style="color: #B2B2B2;" />
       </view>
