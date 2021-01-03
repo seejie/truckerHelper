@@ -4,23 +4,41 @@ Page({
    * 页面的初始数据
    */
   data: {
-    carNum: '',
+    carNum: ['', '', '', '', '', '', ''],
     tel: '',
     idCard: '',
     travelCodeImgs: [],
-    healthCodeImgs: []
+    healthCodeImgs: [],
+    focusIdx: 0
   },
 
   onLoad (options) {
 
   },
 
+  onfocus (e) {
+    const {target: {dataset: {idx}}} = e
+    // console.log(idx)
+    const arr = this.data.carNum
+    const i = arr.findIndex(el => !el)
+    // console.log(arr)
+    // console.log(i)
+    const query = wx.createSelectorQuery()
+    const a = query.select('input.box').fields({
+      focus: true
+    }).exec()
+    console.log(a)
+  },
+
   // 输入车牌号
   onCarNumChanged (e) {
     const {detail: {value: val}, target: {dataset: {idx}}} = e
-    console.log(e)
-    console.log(val)
-    console.log(idx)
+    const carNum = this.data.carNum
+    const i = carNum.findIndex(el => !el)
+    if (+idx > i) return
+    carNum[+idx] = val
+    this.setData({carNum})
+    this.setData({focusIdx: this.data.focusIdx + 1})
   },
 
   // 输入手机号

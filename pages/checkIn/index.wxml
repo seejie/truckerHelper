@@ -4,23 +4,23 @@
   <text class="title">请输入车牌号</text>
   <view class="pannel carNum">
     <view class="input-group">
-      <input type="text" class="box first" maxlength="1" 
-        bindinput="onCarNumChanged" data-idx="1" />
+      <input type="text" class="box first" maxlength="1" focus="{{focusIdx === 0}}"
+        bindinput="onCarNumChanged" data-idx="0" bindfocus="onfocus" />
       <view class="line"></view>
-      <input type="text" class="box last" maxlength="1" 
-        bindinput="onCarNumChanged" data-idx="2" />
+      <input type="text" class="box last" maxlength="1" focus="{{focusIdx === 1}}"
+        bindinput="onCarNumChanged" data-idx="1" bindfocus="onfocus" />
     </view>
     <view class="dot"></view>
-    <input type="text" class="box" maxlength="1" 
-      bindinput="onCarNumChanged" data-idx="3" />
-    <input type="text" class="box" maxlength="1" 
-      bindinput="onCarNumChanged" data-idx="4" />
-    <input type="text" class="box" maxlength="1"
-     bindinput="onCarNumChanged" data-idx="5" />
-    <input type="text" class="box" maxlength="1"
-     bindinput="onCarNumChanged" data-idx="6" />
-    <input type="text" class="box" maxlength="1"
-     bindinput="onCarNumChanged" data-idx="7" />
+    <input type="text" class="box" maxlength="1" focus="{{focusIdx === 2}}"
+      bindinput="onCarNumChanged" data-idx="2" bindfocus="onfocus" />
+    <input type="text" class="box" maxlength="1" focus="{{focusIdx === 3}}"
+      bindinput="onCarNumChanged" data-idx="3" bindfocus="onfocus" />
+    <input type="text" class="box" maxlength="1" focus="{{focusIdx === 4}}"
+     bindinput="onCarNumChanged" data-idx="4" bindfocus="onfocus" />
+    <input type="text" class="box" maxlength="1" focus="{{focusIdx === 5}}"
+     bindinput="onCarNumChanged" data-idx="5" bindfocus="onfocus" />
+    <input type="text" class="box" maxlength="1" focus="{{focusIdx === 6}}"
+     bindinput="onCarNumChanged" data-idx="6" bindfocus="onfocus" />
     <view class="box">新能源</view>
   </view>
 
