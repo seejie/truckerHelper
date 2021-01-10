@@ -1,9 +1,8 @@
 <view class="wrapper">
   <image class="icon" src="../../img/index-logo.png"></image>
   <view class="txt">请录入本次送货人员的基本信息</view>
-  <view class="btn" bindtap="onCheckIn">
+  <button class="btn" open-type="getPhoneNumber" bindgetphonenumber="getPhoneNumber">
     开始录入人员基本信息
-  </view>
-
+  </button>
   <sideBar />
 </view>

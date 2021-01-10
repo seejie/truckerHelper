@@ -11,7 +11,12 @@ Page({
  
   },
 
-  onCheckIn () {
+  getPhoneNumber (e) {
+    const { detail: { iv, encryptedData} } = e
+    console.log(e)
+    console.log(e.detail.errMsg)
+    console.log(iv)
+    console.log(encryptedData)
     wx.redirectTo({
       url: '/pages/checkIn/index',
     })

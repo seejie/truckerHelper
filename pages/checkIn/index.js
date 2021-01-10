@@ -21,13 +21,8 @@ Page({
     // console.log(idx)
     const arr = this.data.carNum
     const i = arr.findIndex(el => !el)
-    // console.log(arr)
-    // console.log(i)
-    const query = wx.createSelectorQuery()
-    const a = query.select('input.box').fields({
-      focus: true
-    }).exec()
-    console.log(a)
+    if (i > idx) return
+    this.setData({focusIdx: i})
   },
 
   // 输入车牌号
@@ -37,8 +32,7 @@ Page({
     const i = carNum.findIndex(el => !el)
     if (+idx > i) return
     carNum[+idx] = val
-    this.setData({carNum})
-    this.setData({focusIdx: this.data.focusIdx + 1})
+    this.setData({carNum, focusIdx: +idx + 1})
   },
 
   // 输入手机号
@@ -63,19 +57,18 @@ Page({
     if (!idCard.trim()) return this.showErrMsg('身份证必填')
     if (!/\d{17}(\d|X|x)/.test(idCard)) return this.showErrMsg('无效身份证号，请检查后重新填写~')
 
-    return
     wx.redirectTo({
       url: '/pages/promise/index',
-      // url: '/pages/notTest/index',
-      // url: '/pages/training/index',
     })
   },
 
+  // 展示错误提示
   showErrMsg (txt) {
     wx.showToast({
       title: txt,
       icon: 'none',
       duration: 2000
     })
-  }
+  },
+
 })

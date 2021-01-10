@@ -62,8 +62,7 @@
       class="uploader"
       bind:after-read="afterRead" />
   </view>
-
+  
   <template is="tips" data="{{txt: '请在录入以下信息后，点击“保存”按钮'}}"/>
-
   <view class="btn submit" bindtap="onsubmit">保存</view>
 </view>
