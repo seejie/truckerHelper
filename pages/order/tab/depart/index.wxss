@@ -30,8 +30,23 @@
 }
 
 .td{
-  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.td.name{
+  width: calc(100% - 66rpx - 66rpx - 160rpx);
   text-align: center;
+}
+
+.td:nth-child(1),
+.td:nth-child(4){
+  min-width: 66rpx;
+}
+
+.td:nth-child(3){
+  min-width: 160rpx;
 }
 
 .checkbox{

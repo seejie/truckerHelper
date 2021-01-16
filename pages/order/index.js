@@ -1,14 +1,14 @@
 Page({
   data: {
-    currTab: 'add',
+    // currTab: 'add',
     // currTab: 'depart',
-    // currTab: 'arrive',
+    currTab: 'arrive',
     // currTab: 'queue',
     // currTab: 'unload',
   },
 
-  onLoad (options) {
-
+  onLoad () {
+    
   },
 
   // 扫码

@@ -14,19 +14,13 @@ export const api = {
   // 提交考试答案
   submitAnswer: `${baseUrl}/UpdateExam`,
   // 添加订单
-  submitOrder: `${baseUrl}`,
+  submitOrder: `${baseUrl}/BindOrder?driverId=`,
   // 获取订单信息
-  getOrderInfo: `${baseUrl}`,
+  getOrderInfo: `${baseUrl}/LoadOrderStatus?driverId=`,
   // 获取物料明细
-  getMaterialDetail: `${baseUrl}`,
-  // 确认发车
-  confirmDepart: `${baseUrl}`,
+  getMaterialDetail: `${baseUrl}/LoadOrder?driverId=`,
   // 轮训上报实时位置、是否发生转运
-  reportLocation: `${baseUrl}`,
-  // 自动叫号
-  autoQueue: `${baseUrl}`,
-  // 获取上一单完成信息
-  getLastOrderInfo: `${baseUrl}`,
+  reportLocation: `${baseUrl}/UpdateGPS?driverId=`,
   // 系统配置
   sysConfig: `${baseUrl}/LoadConfig?driverId=`
 }

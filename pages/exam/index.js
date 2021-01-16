@@ -1,5 +1,6 @@
 import {post} from '../../api/methods'
 import {api} from '../../api/index'
+import {guid} from '../../utils/util'
 
 const app = getApp()
 Page({
@@ -85,16 +86,17 @@ Page({
         }
 
         const now = new Date().format('yyyy-MM-dd HH:mm:ss')
-        console.log(now)
-        
+        const driverId = '130c81313a3c44a6a57bd0f6158cdb90'
         const data = {
-          DriverId: "司机ID",
+          ScoreId: guid().replace(/\-/g, ''),
+          DriverId: driverId,
           WXOpenId: "小程序OpenId",
           ExamTime: now,
           TotalScore: score,
-          IsPassing: isPass,
+          IsPassing: isPass ? 1 : 0,
           Questions: questions
         }
+
         post({
           url: api.submitAnswer,
           data,

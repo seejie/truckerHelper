@@ -7,15 +7,15 @@
 <view class="table">
   <view class="row thead">
     <view class="td">行号</view>
-    <view class="td">物料名称</view>
+    <view class="td name">物料名称</view>
     <view class="td">送货数量</view>
     <view class="td">单位</view>
   </view>
-  <view class="row">
-    <view class="td">1</view>
-    <view class="td">2</view>
-    <view class="td">3</view>
-    <view class="td">4</view>
+  <view class="row" wx:for="{{materials}}" wx:key="index">
+    <view class="td">{{index}}</view>
+    <view class="td name">{{item.Name}}</view>
+    <view class="td">{{item.Quantity}}</view>
+    <view class="td">{{item.Unit}}</view>
   </view>
 </view>
 

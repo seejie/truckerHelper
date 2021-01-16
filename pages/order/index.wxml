@@ -7,20 +7,29 @@
     </view>
     
     <view class="page {{currTab === 'depart' ? 'selected' : ''}}">
+      <view class="info">
+        <view class="cell">订单编号：{{orderId}}</view>
+        <view class="cell">送货地址：{{address}}</view>
+        <view class="cell">要求到达时间：{{arriveTime}}</view>
+      </view>
       <depart bind:tabChaned="ontabChaned" />
-      <!-- <view class="cell">订单编号：{{orderId}}</view>
-      <view class="cell">送货地址：{{address}}</view>
-      <view class="cell">要求到达时间：{{arriveTime}}</view> -->
     </view>
 
     <view class="page arrive {{currTab === 'arrive' ? 'selected' : ''}}">
+      <view class="info">
+        <view class="cell">当前位置：{{currLoc}}</view>
+        <view class="cell">送货地址：{{deliverAddr}}</view>
+        <view class="cell">距离送货地址：{{distance}}</view>
+      </view>
       <arrive bind:tabChaned="ontabChaned" />
-      <!-- <view class="cell">当前位置：{{currLoc}}</view>
-      <view class="cell">送货地址：{{deliverAddr}}</view>
-      <view class="cell">距离送货地址：{{distance}}</view> -->
     </view>
 
     <view class="page queue {{currTab === 'queue' ? 'selected' : ''}}">
+      <view class="info">
+        <view class="cell">当前位置：{{currLoc}}</view>
+        <view class="cell">送货地址：{{deliverAddr}}</view>
+        <view class="cell">距离送货地址：{{distance}}</view>
+      </view>
       <queue bind:tabChaned="ontabChaned" />
     </view>
 
