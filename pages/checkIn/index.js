@@ -1,3 +1,8 @@
+import {post} from '../../api/methods'
+import {api} from '../../api/index'
+
+const app = getApp()
+
 Page({
 
   /**
@@ -5,6 +10,7 @@ Page({
    */
   data: {
     carNum: ['', '', '', '', '', '', ''],
+    name: '',
     tel: '',
     idCard: '',
     travelCodeImgs: [],
@@ -12,8 +18,17 @@ Page({
     focusIdx: 0
   },
 
-  onLoad (options) {
-
+  onReady () {
+    const user = app.globalData.userInfo
+    const {IdCard, Mobile, PlateNumber, DriverName} = user
+    // console.log(user)
+    const carNum = PlateNumber.split('')
+    this.setData({
+      name: DriverName || '',
+      tel: Mobile || '',
+      idCard: IdCard || '',
+      carNum
+    })
   },
 
   onfocus (e) {
@@ -47,18 +62,41 @@ Page({
     this.setData({idCard})
   },
 
+  // 输入姓名
+  onNameChanged (e) {
+    const name = e.detail.value
+    this.setData({name})
+  },
+
   // 保存
   onsubmit () {
-    const {tel, idCard} = this.data
-    console.log(tel)
-    console.log(idCard)
-    if (!tel.trim()) return this.showErrMsg('手机号必填')
-    if (!/^1[0-9]{10}$/.test(tel)) return this.showErrMsg('无效手机号，请检查后重新填写~') 
-    if (!idCard.trim()) return this.showErrMsg('身份证必填')
-    if (!/\d{17}(\d|X|x)/.test(idCard)) return this.showErrMsg('无效身份证号，请检查后重新填写~')
+    const {name, tel, idCard, carNum} = this.data
+    const {Id} = app.globalData.userInfo
+    // console.log(tel)
+    // console.log(idCard)
+    // if (!tel.trim()) return this.showErrMsg('手机号必填')
+    // if (!/^1[0-9]{10}$/.test(tel)) return this.showErrMsg('无效手机号，请检查后重新填写~') 
+    // if (!idCard.trim()) return this.showErrMsg('身份证必填')
+    // if (!/\d{17}(\d|X|x)/.test(idCard)) return this.showErrMsg('无效身份证号，请检查后重新填写~')
 
-    wx.redirectTo({
-      url: '/pages/promise/index',
+    post({
+      url: api.submitUserInfo,
+      data: {
+        Id,
+        DriverName: name,
+        IdCard: idCard,
+        Mobile: tel,
+        WXOpenId: "小程序OpenId",
+        WXNickName: "昵称",
+        WXAvatarUrl: "头像链接",
+        PlateNumber: carNum.join(''),
+      },
+      success: res => {
+        console.log(res)
+        wx.redirectTo({
+          url: '/pages/promise/index',
+        })
+      }
     })
   },
 

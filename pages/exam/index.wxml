@@ -1,6 +1,22 @@
 <view class="wrapper">
+  <view class="type">单选题</view>
   <view class="main">
-    
+    <view class="card" wx:for="{{questions}}" wx:key="index">
+      <view class="title">
+        {{index + 1}}、{{item.Content}}
+      </view>
+      
+      <van-radio-group value="{{ questions[index].selected }}" 
+        bind:change="onAnswer" data-idx="{{index}}">
+        <van-radio
+          wx:for="{{questions[index].AnswerList}}" 
+          wx:key="idx"
+          custom-class="option"
+          name="{{index}}"
+          checked-color="#08bb07"
+        >{{item.Answer}}</van-radio>
+      </van-radio-group>
+    </view>
   </view>
 
   <view class="btn" bindtap="onSubmit">结束考试</view>

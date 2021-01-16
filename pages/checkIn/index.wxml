@@ -5,26 +5,36 @@
   <view class="pannel carNum">
     <view class="input-group">
       <input type="text" class="box first" maxlength="1" focus="{{focusIdx === 0}}"
-        bindinput="onCarNumChanged" data-idx="0" bindfocus="onfocus" />
+        bindinput="onCarNumChanged" data-idx="0" bindfocus="onfocus" value="{{ carNum[0] }}" />
       <view class="line"></view>
       <input type="text" class="box last" maxlength="1" focus="{{focusIdx === 1}}"
-        bindinput="onCarNumChanged" data-idx="1" bindfocus="onfocus" />
+        bindinput="onCarNumChanged" data-idx="1" bindfocus="onfocus"  value="{{ carNum[1] }}" />
     </view>
     <view class="dot"></view>
-    <input type="text" class="box" maxlength="1" focus="{{focusIdx === 2}}"
-      bindinput="onCarNumChanged" data-idx="2" bindfocus="onfocus" />
     <input type="text" class="box" maxlength="1" focus="{{focusIdx === 3}}"
-      bindinput="onCarNumChanged" data-idx="3" bindfocus="onfocus" />
+      bindinput="onCarNumChanged" data-idx="2" bindfocus="onfocus"  value="{{ carNum[3] }}" />
     <input type="text" class="box" maxlength="1" focus="{{focusIdx === 4}}"
-     bindinput="onCarNumChanged" data-idx="4" bindfocus="onfocus" />
+      bindinput="onCarNumChanged" data-idx="3" bindfocus="onfocus" value="{{ carNum[4] }}" />
     <input type="text" class="box" maxlength="1" focus="{{focusIdx === 5}}"
-     bindinput="onCarNumChanged" data-idx="5" bindfocus="onfocus" />
+     bindinput="onCarNumChanged" data-idx="4" bindfocus="onfocus"  value="{{ carNum[5] }}" />
     <input type="text" class="box" maxlength="1" focus="{{focusIdx === 6}}"
-     bindinput="onCarNumChanged" data-idx="6" bindfocus="onfocus" />
+     bindinput="onCarNumChanged" data-idx="5" bindfocus="onfocus"  value="{{ carNum[6] }}" />
+    <input type="text" class="box" maxlength="1" focus="{{focusIdx === 7}}"
+     bindinput="onCarNumChanged" data-idx="6" bindfocus="onfocus"  value="{{ carNum[7] }}" />
     <view class="box">新能源</view>
   </view>
 
   <view class="pannel form">
+    <view class="row">
+      <view class="label">姓名</view>
+      <view class="input">
+        <input type="text" value="{{ name }}" 
+          type="text"
+          bindinput="onNameChanged"
+          placeholder="请输入姓名"
+          placeholder-style="color: #B2B2B2;" />
+      </view>
+    </view>
     <view class="row">
       <view class="label">手机号</view>
       <view class="input">

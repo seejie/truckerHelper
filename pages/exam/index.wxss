@@ -1,11 +1,12 @@
 
 .wrapper{
   display: flex;
+  flex-direction: column;
 }
 
 .main{
   margin-bottom: 150rpx;
-  padding: 30rpx;
+  background-color: #fff;
   overflow-y: scroll;
 }
 
@@ -14,3 +15,32 @@
   left: 30rpx;
   bottom: 30rpx;
 }
+
+.type{
+  color: #888;
+  font-size: 28rpx;
+  padding: 20rpx 30rpx;
+}
+
+.card{
+  border-bottom: 30rpx solid #f6f6f6;
+}
+
+.title{
+  color: #000;
+  font-size: 34rpx;
+  padding: 25rpx 30rpx;
+}
+
+.content{
+  line-height: 36rpx;
+  color: #353535;
+  font-size: 28rpx;
+  margin: 22rpx 0;
+}
+
+.option{
+  padding: 25rpx 25rpx 25rpx 30rpx;
+  border-top: 1rpx solid #E5E5E5;
+}
+

@@ -1,34 +1,32 @@
-import {domain} from '../utils/config'
+import {baseUrl} from '../utils/config'
 
 export const api = {
-  // 读取配置信息
-  getSysConfigInfo: `${domain}`,
-  // 获取用户上一次填写信息
-  getUserLastTimeSubmitedInfo: `${domain}`,
+  // 登录验证
+  login: `${baseUrl}/Login?driverId=`,
   // 图片上传
-  uploadImg: `${domain}`,
+  uploadImg: `${baseUrl}`,
   // 保存录入信息
-  submitUserInfo: `${domain}`,
-  // 上一次通过考试日期
-  getLastTimeOfPassExam: `${domain}`,
+  submitUserInfo: `${baseUrl}/UpdateDriverInfo`,
   // 查询培训题目
-  getTrainingData: `${domain}`,
+  getTrainingData: `${baseUrl}/LoadExamConfig?driverId=`,
   // 查询考试题目
-  getExamData: `${domain}`,
+  getExamData: `${baseUrl}/LoadExamConfig?driverId=`,
   // 提交考试答案
-  submitAnswer: `${domain}`,
+  submitAnswer: `${baseUrl}/UpdateExam`,
   // 添加订单
-  submitOrder: `${domain}`,
+  submitOrder: `${baseUrl}`,
   // 获取订单信息
-  getOrderInfo: `${domain}`,
+  getOrderInfo: `${baseUrl}`,
   // 获取物料明细
-  getMaterialDetail: `${domain}`,
+  getMaterialDetail: `${baseUrl}`,
   // 确认发车
-  confirmDepart: `${domain}`,
+  confirmDepart: `${baseUrl}`,
   // 轮训上报实时位置、是否发生转运
-  reportLocation: `${domain}`,
+  reportLocation: `${baseUrl}`,
   // 自动叫号
-  autoQueue: `${domain}`,
+  autoQueue: `${baseUrl}`,
   // 获取上一单完成信息
-  getLastOrderInfo: `${domain}`,
+  getLastOrderInfo: `${baseUrl}`,
+  // 系统配置
+  sysConfig: `${baseUrl}/LoadConfig?driverId=`
 }
