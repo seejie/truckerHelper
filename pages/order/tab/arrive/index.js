@@ -98,8 +98,6 @@ Component({
         id: 111,
         latitude,
         longitude,
-        width: '40rpx',
-        height: '60rpx'
       }]
 
       const circle = [{

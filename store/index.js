@@ -13,6 +13,10 @@ export const store = observable({
     this.currLoc = payload
   }),
   setDistance: action(function (payload) {
-    this.distance = payload + ' 米'
+    if (payload >= 1000) {
+      this.distance = (payload / 1000).toFixed(1) + ' 公里'
+    } else {
+      this.distance = payload + ' 米'
+    }
   })
 })

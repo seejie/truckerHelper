@@ -30,6 +30,31 @@ Component({
     // 确认发车
     ondepart () {
       this.triggerEvent('tabChaned', {currTab: 'arrive'}, {})
+      wx.startLocationUpdateBackground({
+        success: res => {
+          console.log(res)
+        },
+        fail: err => {
+          // console.log(err)
+          wx.showModal({
+            title: '温馨提示',
+            content: '为更好体验服务',
+            confirmText:"同意",
+            cancelText:"拒绝",
+            success (res) {
+              if (!res.confirm)  return
+              wx.openSetting({
+                success: res => {
+                  console.log(res)
+                },
+                fail: err => {
+                  console.log(err)
+                }
+              })
+            }
+          })
+        }
+      })
     },
 
     // 获取订单信息
@@ -62,6 +87,10 @@ Component({
           this.setDeliverAddr(ShipTo.Address)
         }
       })
+    },
+
+    locationChanged (...arr) {
+      console.log(arr, 123)
     }
   }
 })
