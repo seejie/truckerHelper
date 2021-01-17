@@ -18,13 +18,14 @@
 
   <view class="container">
     <map
+      wx:if="{{showMap}}"
       id="map"
       class="map"
       style="width: 100%;"
       latitude="{{latitude}}"
       longitude="{{longitude}}"
-      markers="{{markers}}"
-      covers="{{covers}}"
+      markers="{{marker}}"
+      circles="{{circle}}"
     />
   </view>
 </view>

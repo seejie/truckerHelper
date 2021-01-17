@@ -10,8 +10,13 @@ Component({
     fields: ['deliverAddr'],
   },
   data: {
-    latitude: 23.099994,
-    longitude: 113.324520,
+    // latitude: 23.099994,
+    // longitude: 113.324520,
+    latitude: undefined,
+    longitude: undefined,
+    marker: {},
+    circle: {},
+    showMap: false
   },
   ready () {
     this.getCurrLocation()
@@ -23,9 +28,29 @@ Component({
         type: 'wgs84',
         success: res => {
           console.log(res)
-          const latitude = res.latitude
-          const longitude = res.longitude
+          const {latitude, longitude} = res
           this.reportLocation()
+          const marker = [{
+            latitude,
+            longitude
+          }]
+
+          const circle = [{
+            latitude,
+            longitude,
+            color: '#FF0000DD',
+            fillColor: '#7cb5ec88',
+            radius: 100,
+            strokeWidth: 2
+          }]
+
+          this.setData({
+            marker,
+            latitude,
+            longitude,
+            showMap: true,
+            circle
+          })
         }
        })
     },
@@ -38,8 +63,7 @@ Component({
       post({
         url: api.reportLocation + `${driverId}&longitude=${longitude}&latitude=${latitude}`,
         success: res => {
-          console.log(1111)
-          console.log(res)
+          console.log(res, 1111)
         }
       })
     }
