@@ -1,6 +1,0 @@
-<view class="wrapper">
-  <view class="row" wx:for="currOrder" wx:key="index">
-    <view class="label">{{item.label}}</view>
-    <view class="content">{{item.value}}</view>
-  </view>
-</view>

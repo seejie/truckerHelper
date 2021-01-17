@@ -1,3 +1,14 @@
-<infoCard />
+<view class="info">
+  <view class="cell">
+    <view class="tag">当前位置：</view>{{currLoc}}
+  </view>
+  <view class="cell">
+    <view class="tag">送货地址：</view>{{deliverAddr}}
+  </view>
+  <view class="cell">
+    <view class="tag">距离送货地址：</view>{{distance}}
+  </view>
+</view>
+
 <numCard />
 <orderCard />

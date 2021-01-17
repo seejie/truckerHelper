@@ -1,6 +1,16 @@
 <view class="arrive-wrapper">
-  <infoCard />
-  
+  <view class="info">
+    <view class="cell">
+      <view class="tag">当前位置：</view>{{currLoc}}
+    </view>
+    <view class="cell">
+      <view class="tag">送货地址：</view>{{deliverAddr}}
+    </view>
+    <view class="cell">
+      <view class="tag">距离送货地址：{{distance}}</view>
+    </view>
+  </view>
+
   <view class="tips">
     <image class="tips-icon" src="../../../../img/info.png"></image>
     您当前已经位于送货地点附近，系统已经自动报告您的位置，请等待叫号。叫号信息将通过个人微信的消息通知和短消息推送给您，请注意查收

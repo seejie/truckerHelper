@@ -15,21 +15,6 @@
   display: block;
 }
 
-.info{
-  background-color: #fff;
-  margin-bottom: 30rpx;
-}
-
-.cell {
-  font-size: 34rpx;
-  padding: 28rpx 0;
-  margin-left: 30rpx;
-}
-
-.cell + .cell{
-  border-top: 1px solid #f5f5f5;
-}
-
 /* 叫号 */
 .queue .tips{
   width: 90vw;

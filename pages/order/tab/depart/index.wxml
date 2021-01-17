@@ -1,4 +1,14 @@
-<infoCard />
+<view class="info">
+  <view class="cell">
+    <view class="tag">送货单号：</view>{{orderId}}
+  </view>
+  <view class="cell">
+    <view class="tag">送货地址：</view>{{address}}
+  </view>
+  <view class="cell">
+    <view class="tag">要求到达时间：</view>{{arriveTime}}
+  </view>
+</view>
 
 <view class="title">
   订单物料明细

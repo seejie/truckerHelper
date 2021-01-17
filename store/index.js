@@ -1,16 +1,15 @@
 import { observable, action } from 'mobx-miniprogram'
 
 export const store = observable({
-  currOrder: [],
+  deliverAddr: '',
 
   // getters
-  get getCurrOrder() {
-    return this.currOrder
+  get getDeliverAddr() {
+    return this.deliverAddr
   },
 
   // actions
-  setCurrOrder: action(function (payload) {
-    console.log(payload, 999)
-    this.currOrder = payload
+  setDeliverAddr: action(function (payload) {
+    this.deliverAddr = payload
   })
 })
