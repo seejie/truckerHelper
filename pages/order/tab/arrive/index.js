@@ -4,7 +4,7 @@ import {post} from '../../../../api/methods'
 import {api} from '../../../../api/index'
 const QQMapWX = require('../../../../utils/qqmap-wx-jssdk');
 const qqmapsdk = new QQMapWX({
-  key: '7VFBZ-RQPCW-SPCR4-RGSOY-VVYPF-UIBK7'
+  key: 'TCEBZ-3TKRI-REAGV-5575O-W7DJ7-AMFEE'
 })
 
 Component({
