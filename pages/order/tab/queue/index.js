@@ -5,11 +5,10 @@ Component({
   behaviors: [storeBindingsBehavior],
   storeBindings: {
     store,
-    fields: ['deliverAddr'],
+    fields: ['deliverAddr', 'currLoc', 'distance'],
   },
   data: {
-    latitude: 23.099994,
-    longitude: 113.324520,
+
   },
   methods: {
    

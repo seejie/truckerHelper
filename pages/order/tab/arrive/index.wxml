@@ -7,7 +7,7 @@
       <view class="tag">送货地址：</view>{{deliverAddr}}
     </view>
     <view class="cell">
-      <view class="tag">距离送货地址：{{distance}}</view>
+      <view class="tag">距离送货地址：</view>{{distance}}
     </view>
   </view>
 

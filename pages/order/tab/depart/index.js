@@ -19,8 +19,6 @@ Component({
   ready () {
     this.getMaterialDetail()
     this.getOrderInfo()
-    const a = this.getDeliverAddr
-    console.log(a)
   },
   methods: {
     // 确认装车
