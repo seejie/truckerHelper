@@ -6,10 +6,10 @@
   
   <view class="content">
     <view class="number">
-      2
+      {{DockNo}}
     </view>
     <view class="time">
-      叫号时间：2020-10-14 16:20:23
+      叫号时间：{{CheckInTime}}
     </view>
   </view>
 </view>

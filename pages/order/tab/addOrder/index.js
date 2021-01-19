@@ -5,9 +5,6 @@ Component({
   data: {
     currTab: 'order'
   },
-  computed: {
-    
-  },
   methods: {
     // 添加订单
     addOrder () {
@@ -17,7 +14,7 @@ Component({
       post({
         url: api.submitOrder + driverId + `&deliveryNo=${deliveryNo}`,
         success: res => {
-          console.log(res)
+          // console.log(res)
           this.triggerEvent('tabChaned', {currTab: 'depart'}, {})
         }
       })

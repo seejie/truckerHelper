@@ -1,6 +1,6 @@
 <view class="order-card">
   <view class="title">订单编号</view>
   <view class="order">
-    4577868465
+    {{DeliveryNo}}
   </view>
 </view>

@@ -92,7 +92,7 @@ Page({
         PlateNumber: carNum.join(''),
       },
       success: res => {
-        console.log(res)
+        // console.log(res)
         wx.redirectTo({
           url: '/pages/promise/index',
         })

@@ -4,6 +4,9 @@ export const store = observable({
   deliverAddr: '',
   currLoc: '',
   distance: '',
+  DockNo: '',
+  CheckInTime: '',
+  DeliveryNo: '',
 
   // actions
   setDeliverAddr: action(function (payload) {
@@ -18,5 +21,14 @@ export const store = observable({
     } else {
       this.distance = payload + ' 米'
     }
-  })
+  }),
+  setDockNo: action(function (payload) {
+    this.DockNo = payload
+  }),
+  setCheckInTime: action(function (payload) {
+    this.CheckInTime = payload
+  }),
+  setDeliveryNo: action(function (payload) {
+    this.DeliveryNo = payload
+  }),
 })

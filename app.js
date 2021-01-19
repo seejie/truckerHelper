@@ -165,7 +165,7 @@ App({
     post({
       url: api.sysConfig + driverId,
       success: res => {
-        console.log(res)
+        console.log('系统配置：', res.view)
         this.globalData.sysConfig = res.view
       }
     })

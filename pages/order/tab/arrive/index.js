@@ -7,12 +7,14 @@ const qqmapsdk = new QQMapWX({
   key: 'TCEBZ-3TKRI-REAGV-5575O-W7DJ7-AMFEE'
 })
 
+const app = getApp()
+
 Component({
   behaviors: [storeBindingsBehavior],
   storeBindings: {
     store,
     fields: ['deliverAddr', 'currLoc', 'distance'],
-    actions: ['setCurrLoc', 'setDistance']
+    actions: ['setCurrLoc', 'setDistance', 'setDockNo', 'setCheckInTime', 'setDeliveryNo']
   },
   data: {
     latitude: undefined,
@@ -30,7 +32,7 @@ Component({
       wx.getLocation({
         type: 'gcj02',
         success: res => {
-          console.log(res)
+          // console.log(res)
           const {latitude, longitude} = res
           this.reportLocation({latitude, longitude})
           this.getRealAddr({latitude, longitude})
@@ -43,12 +45,20 @@ Component({
     // 上报地理位置
     reportLocation ({latitude, longitude}) {
       const driverId = '130c81313a3c44a6a57bd0f6158cdb90'
-      post({
-        url: api.reportLocation + `${driverId}&longitude=${longitude}&latitude=${latitude}`,
-        success: res => {
-          console.log(res)
-        }
-      })
+      const config = app.globalData.sysConfig.find(el => el.category === 'IntervalRefreshGPS')
+      const frequency = config.key_name
+
+      const request = () => {
+        post({
+          url: api.reportLocation + `${driverId}&longitude=${longitude}&latitude=${latitude}`,
+          success: res => {
+            console.log('上报位置：', res)
+          }
+        })
+      }
+
+      request()
+      setInterval(request, +frequency * 100)
     },
 
     // 获取真实地理信息
@@ -84,6 +94,10 @@ Component({
         success: ({result}) => {
           // console.log(result)
           const {distance} = result.elements[0]
+          const config = app.globalData.sysConfig.find(el => el.category === 'ArriveRange')
+          const threshold = config.key_name
+    
+          if (distance <= +threshold) this.getOrderInfo()
           this.setDistance(distance)
         },
         fail: function(error) {
@@ -116,6 +130,30 @@ Component({
         showMap: true,
         circle
       })
+    },
+
+    // 获取订单信息
+    getOrderInfo () {
+      const driverId = '130c81313a3c44a6a57bd0f6158cdb90'
+      const deliveryNo = '21100006Supplier001'
+      const config = app.globalData.sysConfig.find(el => el.category === 'IntervalRefreshOrder')
+      const frequency = config.key_name
+      
+      const request = () => {
+        post({
+          url: api.getOrderInfo + driverId + `&deliveryNo=${deliveryNo}`,
+          success: res => {
+            console.log('订单状态：', res.view)
+            const {DockNo, CheckInTime, DeliveryNo} = res.view
+            this.setDockNo(DockNo)
+            this.setCheckInTime(CheckInTime)
+            this.setDeliveryNo(DeliveryNo)
+          }
+        })
+      }
+
+      request()
+      setInterval(request, +frequency * 100)
     }
   }
 })

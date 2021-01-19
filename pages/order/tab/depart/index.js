@@ -18,7 +18,6 @@ Component({
   },
   ready () {
     this.getMaterialDetail()
-    this.getOrderInfo()
   },
   methods: {
     // 确认装车
@@ -32,7 +31,7 @@ Component({
       this.triggerEvent('tabChaned', {currTab: 'arrive'}, {})
       wx.startLocationUpdateBackground({
         success: res => {
-          console.log(res)
+          // console.log(res)
         },
         fail: err => {
           // console.log(err)
@@ -45,28 +44,16 @@ Component({
               if (!res.confirm)  return
               wx.openSetting({
                 success: res => {
-                  console.log(res)
+                  // console.log(res)
                 },
                 fail: err => {
-                  console.log(err)
+                  // console.log(err)
                 }
               })
             }
           })
         }
       })
-    },
-
-    // 获取订单信息
-    getOrderInfo () {
-      // const driverId = '130c81313a3c44a6a57bd0f6158cdb90'
-      // const deliveryNo = '21100006Supplier001'
-      // post({
-      //   url: api.getOrderInfo + driverId + `&deliveryNo=${deliveryNo}`,
-      //   success: res => {
-      //     const order = res.view
-      //   }
-      // })
     },
 
     // 获取物料信息
@@ -76,14 +63,13 @@ Component({
       post({
         url: api.getMaterialDetail + driverId + `&deliveryNo=${deliveryNo}`,
         success: res => {
-          const {Lines, ShipTo, DeliveryNo} = res.View
+          const {Lines, ShipTo, DeliveryNo, SWETTime} = res.View
           this.setData({
             materials: Lines,
             orderId: DeliveryNo,
             address: ShipTo.Address,
-            arriveTime: ''
+            arriveTime: SWETTime || ''
           })
-          // console.log(ShipTo)
           this.setDeliverAddr(ShipTo.Address)
         }
       })

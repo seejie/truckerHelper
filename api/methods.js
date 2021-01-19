@@ -11,7 +11,7 @@ export const get = options => {
     //   'content-type': 'application/json' // 默认值
     // },
     success (res) {
-      console.log(res)
+      // console.log(res)
       if (res.statusCode !== 200) return
       success && success(res.data)
     },
