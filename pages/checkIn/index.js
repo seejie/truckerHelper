@@ -74,10 +74,10 @@ Page({
     const {Id} = app.globalData.userInfo
     // console.log(tel)
     // console.log(idCard)
-    // if (!tel.trim()) return this.showErrMsg('手机号必填')
-    // if (!/^1[0-9]{10}$/.test(tel)) return this.showErrMsg('无效手机号，请检查后重新填写~') 
-    // if (!idCard.trim()) return this.showErrMsg('身份证必填')
-    // if (!/\d{17}(\d|X|x)/.test(idCard)) return this.showErrMsg('无效身份证号，请检查后重新填写~')
+    if (!tel.trim()) return this.showErrMsg('手机号必填')
+    if (!/^1[0-9]{10}$/.test(tel)) return this.showErrMsg('无效手机号，请检查后重新填写~') 
+    if (!idCard.trim()) return this.showErrMsg('身份证必填')
+    if (!/\d{17}(\d|X|x)/.test(idCard)) return this.showErrMsg('无效身份证号，请检查后重新填写~')
 
     post({
       url: api.submitUserInfo,

@@ -9,7 +9,7 @@ App({
   },
 
   onLaunch () {
-    // this.debug()
+    this.debug()
     this.userLogin()
     this.login()
   },
