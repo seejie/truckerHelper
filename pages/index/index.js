@@ -36,11 +36,11 @@ Page({
       url: api.login + code,
       success: res => {
         // todo
-        // const user = res.view
+        const user = res.view
+        this.setUser(user)
         // console.log('用户信息：', user)
-        // this.setUser(user)
-        // !user.Mobile && this.setData({needUserAuth: true})
-        // this.getSysConfig(user.Id)
+        !user.Mobile && this.setData({needUserAuth: true})
+        this.getSysConfig(user.Id)
       }
     })
   },
@@ -50,7 +50,7 @@ Page({
     post({
       url: api.sysConfig + id,
       success: res => {
-        console.log('系统配置：', res.view)
+        // console.log('系统配置：', res.view)
         this.setSysConfig(res.view)
       }
     })

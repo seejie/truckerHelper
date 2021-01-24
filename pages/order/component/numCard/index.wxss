@@ -34,6 +34,10 @@
   padding: 56rpx 0;
 }
 
+.number.unload{
+  color: #00C405;
+}
+
 .time{
   color: #888;
   font-size: 24rpx;

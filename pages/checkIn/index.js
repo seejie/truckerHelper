@@ -22,6 +22,7 @@ Page({
 
   onReady () {
     const {IdCard, Mobile, PlateNumber, DriverName} = this.data.user
+
     this.setData({
       name: DriverName || '',
       tel: Mobile || '',

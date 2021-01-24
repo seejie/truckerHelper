@@ -1,2 +1,4 @@
-<!--pages/my/index.wxml-->
-<text>pages/my/index.wxml</text>
+<view>
+  建设中...
+  <sideBar />
+</view>

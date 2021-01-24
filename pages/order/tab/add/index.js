@@ -12,8 +12,6 @@ Component({
     actions: ['setDeliveryNo']
   },
   data: {
-    currTab: 'order',
-    // orderNo: '2110003350510107'
     orderNo: ''
   },
   methods: {

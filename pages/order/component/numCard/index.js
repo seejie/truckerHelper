@@ -5,6 +5,6 @@ Component({
   behaviors: [storeBindingsBehavior],
   storeBindings: {
     store,
-    fields: ['DockNo', 'CheckInTime'],
+    fields: ['DockNo', 'CheckInTime', 'currTab'],
   }
 })

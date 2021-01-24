@@ -5,7 +5,7 @@
   </view>
   
   <view class="content">
-    <view class="number">
+    <view class="number {{currTab}}">
       {{DockNo}}
     </view>
     <view class="time">
