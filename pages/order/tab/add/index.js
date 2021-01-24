@@ -13,13 +13,12 @@ Component({
   },
   data: {
     currTab: 'order',
-    orderNo: ''
+    orderNo: '2110003350510107'
   },
   methods: {
     // 添加订单
     addOrder () {
       const {user: {Id}, orderNo} = this.data
-
       if (!orderNo)return toast('未填写订单~')
 
       post({
@@ -40,11 +39,16 @@ Component({
     onscanCode () {
       // todo 一维码还是二维码，提供测试图片
       wx.scanCode({
-        onlyFromCamera: true
-      }).then(res => {
-        console.log('扫码识别成功：', res)
-      }).catch(res => {
-        console.log('扫码识别失败：', res)
+        onlyFromCamera: true,
+        success: res => {
+          console.log('扫码识别成功：', res)
+        },
+        fail: err => {
+          console.log('扫码识别失败：', err)
+        },
+        complete: () => {
+          this.setData({orderNo: '2110003350510107'})
+        }
       })
     },
   }

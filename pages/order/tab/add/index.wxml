@@ -4,7 +4,7 @@
 </view>
 
 <view class="input-order">
-  <input type="text" class="input" placeholder="请扫描订单或手动输入" bindinput="oninput"/>
+  <input type="text" class="input" placeholder="请扫描订单或手动输入" bindinput="oninput" value="{{orderNo}}"/>
   <image class="scan" src="../../../../img/scan.png" bindtap="onscanCode"></image>
 </view>
 
