@@ -66,9 +66,7 @@ Page({
       title = '不通过'
       url = '/pages/training/index'
     }
-    // // todo
-    // wx.redirectTo({url})
-    // return
+
     wx.showModal({
       title,
       content: msg,

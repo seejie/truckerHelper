@@ -1,4 +1,4 @@
-<view class="num-card">
+<view class="num-card" wx:if="{{DockNo}}">
   <view class="title">
     <image class="img" src="../../../../img/info.png"></image>
     卸货通道，请前往指定道口卸货

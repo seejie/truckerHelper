@@ -17,14 +17,15 @@
   align-items: center;
   padding: 0 30rpx;
 }
+.input-wrapper{
+  flex: 1;
+  overflow: hidden;
+  border: 2rpx solid #FFDCDCDC; 
+  border-radius: 4px;
+}
 
 .input{
-  height: 80rpx;
-  width: 560rpx;
-  border: 1rpx solid #aaa;
-  border-radius: 4px;
-  padding: 0 20rpx;
-  background-color: #fff;
+  width: 100%;
 }
 
 .scan{

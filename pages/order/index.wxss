@@ -9,6 +9,7 @@
 
 .page{
   display: none;
+  height: 100%;
 }
 
 .page.selected{

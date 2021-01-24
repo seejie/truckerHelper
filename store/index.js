@@ -26,8 +26,14 @@ export const store = observable({
   // currTab: 'arrive',
   // currTab: 'queue',
   // currTab: 'unload',
-  // deliverAddr: '',
-  deliverAddr: 'QT',
+  // deliverAddr: {},
+  deliverAddr: {
+    Address: "QT",
+    Code: "U",
+    Latitude: 31.249162,
+    Longitude: 121.487899,
+    Name: "联合利华天津厂"
+  },
   currLoc: '',
   distance: '',
   DockNo: '',

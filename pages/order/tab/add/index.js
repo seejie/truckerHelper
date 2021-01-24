@@ -13,7 +13,8 @@ Component({
   },
   data: {
     currTab: 'order',
-    orderNo: '2110003350510107'
+    // orderNo: '2110003350510107'
+    orderNo: ''
   },
   methods: {
     // 添加订单
@@ -30,25 +31,23 @@ Component({
       })
     },
 
-    oninput (e) {
-      const orderNo = e.detail.value
-      this.setData({orderNo})
+    oninput ({detail}) {
+      this.setData({orderNo: detail})
     },
 
     // 扫码
     onscanCode () {
-      // todo 一维码还是二维码，提供测试图片
       wx.scanCode({
         onlyFromCamera: true,
+        scanType: ['barCode', 'qrCode'],
         success: res => {
-          console.log('扫码识别成功：', res)
+          // console.log('扫码识别成功：', res.result)
+          this.setData({orderNo: res.result})
         },
         fail: err => {
           console.log('扫码识别失败：', err)
+          toast('扫码失败，请重试~')
         },
-        complete: () => {
-          this.setData({orderNo: '2110003350510107'})
-        }
       })
     },
   }

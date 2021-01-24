@@ -4,7 +4,7 @@
       <view class="tag">当前位置：</view>{{currLoc}}
     </view>
     <view class="cell">
-      <view class="tag">送货地址：</view>{{deliverAddr}}
+      <view class="tag">送货地址：</view>{{deliverAddr.Address}}
     </view>
     <view class="cell">
       <view class="tag">距离送货地址：</view>{{distance}}

@@ -45,13 +45,15 @@ Component({
       post({
         url: api.getMaterialDetail + Id + `&deliveryNo=${DeliveryNo}`,
         success: res => {
+          // console.log(res)
           const {Lines, ShipTo, SWETTime} = res.View
           this.setData({
             materials: Lines,
             address: ShipTo.Address,
             arriveTime: SWETTime || ''
           })
-          this.setDeliverAddr(ShipTo.Address)
+          this.setDeliverAddr(ShipTo)
+          console.log(ShipTo, 111)
         }
       })
     },

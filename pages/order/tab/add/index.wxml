@@ -4,7 +4,16 @@
 </view>
 
 <view class="input-order">
-  <input type="text" class="input" placeholder="请扫描订单或手动输入" bindinput="oninput" value="{{orderNo}}"/>
+  <!-- <input type="text"  bindinput="oninput" value="{{orderNo}}"/> -->
+  <van-field
+    value="{{ orderNo }}"
+    placeholder="请扫描订单或手动输入"
+    bind:input="oninput"
+    border="{{false}}"
+    clearable
+    input-class="input"
+    class="input-wrapper"
+  />
   <image class="scan" src="../../../../img/scan.png" bindtap="onscanCode"></image>
 </view>
 

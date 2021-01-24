@@ -2,7 +2,8 @@
   display: flex;
   justify-content: space-around;
   background-color: #fff;
-  margin: 30rpx 0;
+  /* margin: 30rpx 0; */
+  margin-bottom: 30rpx;
 }
 
 .tab{

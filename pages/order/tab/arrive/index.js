@@ -12,8 +12,8 @@ Component({
   behaviors: [storeBindingsBehavior, computedBehavior],
   storeBindings: {
     store,
-    fields: ['user', 'currTab', 'sysConfig', 'DeliveryNo', 'deliverAddr', 'currLoc', 'distance'],
-    actions: ['setCurrLoc', 'setDistance', 'setDockNo', 'setCheckInTime']
+    fields: ['user', 'currTab', 'sysConfig', 'deliverAddr', 'currLoc', 'distance'],
+    actions: ['setCurrLoc', 'setDistance']
   },
   data: {
     latitude: undefined,
@@ -88,6 +88,8 @@ Component({
 
     // 计算距离
     calcDistance ({latitude, longitude}) {
+      const {deliverAddr: {Longitude, Latitude}} = this.data
+
       qqmapsdk.calculateDistance({
         mode: 'driving',
         from: {
@@ -95,18 +97,23 @@ Component({
           longitude
         }, 
         to: [{
-          longitude: 116.44355,
-          latitude: 39.9219
+          longitude: Longitude,
+          latitude: Latitude
         }], 
         success: ({result}) => {
           // console.log(result)
           const {distance} = result.elements[0]
+          this.setDistance(distance)
           const {sysConfig} = this.data
           const config = sysConfig.find(el => el.category === 'ArriveRange')
           const threshold = config.key_name
     
-          if (distance <= +threshold) this.getOrderInfo()
-          this.setDistance(distance)
+          // todo
+          setTimeout(() =>{
+            this.triggerEvent('tabChaned', {currTab: 'queue'}, {})
+          }, 3000)
+          if (distance >= +threshold) return 
+          this.triggerEvent('tabChaned', {currTab: 'queue'}, {})
         },
         fail: function(error) {
           console.error(error);
@@ -116,6 +123,18 @@ Component({
 
     // 渲染地图
     randerMap ({latitude, longitude}) {
+      const {marker, circle} = this.calcMarkerAndCircle({latitude, longitude})
+      this.setData({
+        marker,
+        latitude,
+        longitude,
+        showMap: true,
+        circle
+      })
+    },
+
+    // 计算marker和circle
+    calcMarkerAndCircle ({latitude, longitude}) {
       const marker = [{
         id: 111,
         latitude,
@@ -131,38 +150,9 @@ Component({
         strokeWidth: 2
       }]
 
-      this.setData({
-        marker,
-        latitude,
-        longitude,
-        showMap: true,
-        circle
-      })
+      return {marker, circle}
     },
 
-    // 获取订单信息
-    getOrderInfo () {
-      const {user: {Id}, sysConfig, DeliveryNo} = this.data
-      const config = sysConfig.find(el => el.category === 'IntervalRefreshOrder')
-      const frequency = config.key_name
-      console.log('查询间隔：', frequency)
-
-      const request = () => {
-        post({
-          url: api.getOrderInfo + Id + `&deliveryNo=${DeliveryNo}`,
-          success: res => {
-            console.log('订单状态：', res.view)
-            
-            const {DockNo, CheckInTime} = res.view
-            this.setDockNo(DockNo)
-            this.setCheckInTime(CheckInTime)
-          }
-        })
-      }
-
-      request()
-      setInterval(request, +frequency * 1000)
-    },
     // 开启后台上报
     recordLocation () {
       wx.startLocationUpdateBackground({
