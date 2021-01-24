@@ -39,7 +39,15 @@ export const post = options => {
     },
     fail (err) {
       console.error(err)
+      toast(err)
       fail && fail(err)
+    },
+    complete (res) {
+      // console.log(res)
+      const {statusCode} = res
+      if (statusCode === 200) return
+      toast(`接口异常：code => ${statusCode}`)
+      fail && fail('接口异常，未知错误')
     }
   })
 }

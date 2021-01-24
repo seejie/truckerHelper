@@ -2,6 +2,7 @@ import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
 import { store } from '../../store/index'
 import {post} from '../../api/methods'
 import {api} from '../../api/index'
+import { toast } from '../../lib/utils'
 
 Page({
   behaviors: [storeBindingsBehavior],
@@ -39,8 +40,8 @@ Page({
         const user = res.view
         this.setUser(user)
         // console.log('用户信息：', user)
-        !user.Mobile && this.setData({needUserAuth: true})
         this.getSysConfig(user.Id)
+        this.setData({needUserAuth: !!user.Mobile})
       }
     })
   },
@@ -61,12 +62,30 @@ Page({
     const { detail: { iv, encryptedData} } = e
     // console.log(e)
     // console.log(e.detail.errMsg)
+    if (e.detail.errMsg.includes('deny')) {
+      this.jump2Next()
+      return
+    }
     console.log(iv)
     console.log(encryptedData)
-    this.onRecord()
+
+    post({
+      url: api.getUserRealInfo,
+      data: {
+        iv,
+        encryptedData
+      },
+      success: res => {
+        console.log(res)
+        this.jump2Next()
+      },
+      fail: err => {
+        this.jump2Next()
+      }
+    })
   },
 
-  onRecord () {
+  jump2Next () {
     wx.redirectTo({
       url: '/pages/checkIn/index',
     })

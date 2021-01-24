@@ -4,7 +4,7 @@ export const api = {
   // 登录验证
   login: `${baseUrl}/Login?code=`,
   // 图片上传
-  uploadImg: `${baseUrl}`,
+  uploadImg: `${baseUrl}/`,
   // 保存录入信息
   submitUserInfo: `${baseUrl}/UpdateDriverInfo`,
   // 查询培训题目
@@ -22,5 +22,7 @@ export const api = {
   // 轮训上报实时位置、是否发生转运
   reportLocation: `${baseUrl}/UpdateGPS?driverId=`,
   // 系统配置
-  sysConfig: `${baseUrl}/LoadConfig?driverId=`
+  sysConfig: `${baseUrl}/LoadConfig?driverId=`,
+  // 获取用户真实信息
+  getUserRealInfo: `${baseUrl}/`
 }

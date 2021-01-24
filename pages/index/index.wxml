@@ -11,7 +11,7 @@
   </button>
 
   <button class="btn"
-   bindtap="onRecord"
+   bindtap="jump2Next"
    wx:else
   >
     开始录入人员基本信息
