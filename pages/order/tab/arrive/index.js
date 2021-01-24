@@ -26,8 +26,7 @@ Component({
     currTab: function(tab) {
       if (tab !== 'arrive') return
       this.getCurrLocation()
-      // todo
-      // this.recordLocation()
+      this.recordLocation()
     },
   },
 
@@ -158,27 +157,44 @@ Component({
       wx.startLocationUpdateBackground({
         success: res => {
           // console.log(res)
+          this.onUserLocationChanged()
         },
         fail: err => {
-          console.log(err)
-          wx.showModal({
-            title: '温馨提示',
-            content: '为更好体验服务',
-            confirmText:"同意",
-            cancelText:"拒绝",
-            success (res) {
-              if (!res.confirm)  return
-              wx.openSetting({
-                success: res => {
-                  // console.log(res)
-                },
-                fail: err => {
-                  // console.log(err)
-                }
-              })
+          // console.log(err)
+          this.requestUserAuth()
+        }
+      })
+    },
+
+    // 引导用户授权后台上报位置
+    requestUserAuth () {
+      wx.showModal({
+        title: '温馨提示',
+        content: '请您开启使用小程序期间和离开小程序后，均可检测位置信息~',
+        confirmText:"同意",
+        cancelText:"拒绝",
+        success: res => {
+          if (!res.confirm)  return
+          wx.openSetting({
+            success: res => {
+              console.log(res)
+              this.onUserLocationChanged()
+            },
+            fail: err => {
+              console.log(err)
+              this.requestUserAuth()
             }
           })
         }
+      })
+    },
+
+    // 开始监听位置变化
+    onUserLocationChanged () {
+      wx.onLocationChange(res => {
+        console.log('位置改变：上报位置', res)
+        const {latitude, longitude} = res
+        this.reportLocation({latitude, longitude})
       })
     }
   }

@@ -36,7 +36,6 @@ Page({
     post({
       url: api.login + code,
       success: res => {
-        // todo
         const user = res.view
         this.setUser(user)
         // console.log('用户信息：', user)

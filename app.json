@@ -26,9 +26,6 @@
   "permission": {
     "scope.userLocation": {
       "desc": "您的位置信息将用于实时定位检测"
-    },
-    "scope.userLocationBackground": {
-      "desc": "您的位置信息将用于实时定位检测"
     }
   },
   "requiredBackgroundModes": ["location"]
