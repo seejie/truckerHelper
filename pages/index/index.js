@@ -41,7 +41,7 @@ Page({
         this.setUser(user)
         // console.log('用户信息：', user)
         this.getSysConfig(user.Id)
-        this.setData({needUserAuth: !!user.Mobile})
+        this.setData({needUserAuth: !user.Mobile})
       }
     })
   },
