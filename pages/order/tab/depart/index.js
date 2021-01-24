@@ -2,19 +2,19 @@ import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
 import { store } from '../../../../store/index'
 import {post} from '../../../../api/methods'
 import {api} from '../../../../api/index'
+import { toast } from '../../../../lib/utils'
 const computedBehavior = require('miniprogram-computed')
 
 Component({
   behaviors: [storeBindingsBehavior, computedBehavior],
   storeBindings: {
     store,
-    fields: ['user', 'currTab'],
+    fields: ['user', 'currTab', 'DeliveryNo'],
     actions: ['setDeliverAddr']
   },
   data: {
     doubleConfirm: false,
     materials: [],
-    orderId: '',
     address: '',
     arriveTime: ''
   },
@@ -34,29 +34,20 @@ Component({
     // 确认发车
     ondepart () {
       const {doubleConfirm} = this.data
-      if (!doubleConfirm) {
-        wx.showToast({
-          title: '请先勾选确认',
-          icon: 'none',
-          duration: 2000
-        }) 
-        return
-      }
+      if (!doubleConfirm) return toast('请先勾选确认')
       this.triggerEvent('tabChaned', {currTab: 'arrive'}, {})
     },
 
     // 获取物料信息
     getMaterialDetail () {
-      console.log(123)
-      const {Id} = this.data.user
-      const deliveryNo = '2110003350510107'
+      const {user: {Id}, DeliveryNo} = this.data
+
       post({
-        url: api.getMaterialDetail + Id + `&deliveryNo=${deliveryNo}`,
+        url: api.getMaterialDetail + Id + `&deliveryNo=${DeliveryNo}`,
         success: res => {
-          const {Lines, ShipTo, DeliveryNo, SWETTime} = res.View
+          const {Lines, ShipTo, SWETTime} = res.View
           this.setData({
             materials: Lines,
-            orderId: DeliveryNo,
             address: ShipTo.Address,
             arriveTime: SWETTime || ''
           })

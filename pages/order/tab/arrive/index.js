@@ -3,7 +3,7 @@ import { store } from '../../../../store/index'
 import {post} from '../../../../api/methods'
 import {api} from '../../../../api/index'
 const computedBehavior = require('miniprogram-computed')
-const QQMapWX = require('../../../../utils/qqmap-wx-jssdk');
+const QQMapWX = require('../../../../lib/qqmap-wx-jssdk');
 const qqmapsdk = new QQMapWX({
   key: 'TCEBZ-3TKRI-REAGV-5575O-W7DJ7-AMFEE'
 })
@@ -12,8 +12,8 @@ Component({
   behaviors: [storeBindingsBehavior, computedBehavior],
   storeBindings: {
     store,
-    fields: ['user', 'currTab', 'sysConfig', 'deliverAddr', 'currLoc', 'distance'],
-    actions: ['setCurrLoc', 'setDistance', 'setDockNo', 'setCheckInTime', 'setDeliveryNo']
+    fields: ['user', 'currTab', 'sysConfig', 'DeliveryNo', 'deliverAddr', 'currLoc', 'distance'],
+    actions: ['setCurrLoc', 'setDistance', 'setDockNo', 'setCheckInTime']
   },
   data: {
     latitude: undefined,
@@ -142,22 +142,20 @@ Component({
 
     // 获取订单信息
     getOrderInfo () {
-      const {user: {Id}, sysConfig} = this.data
-      const deliveryNo = '2110003350510107'
+      const {user: {Id}, sysConfig, DeliveryNo} = this.data
       const config = sysConfig.find(el => el.category === 'IntervalRefreshOrder')
       const frequency = config.key_name
       console.log('查询间隔：', frequency)
 
       const request = () => {
         post({
-          url: api.getOrderInfo + Id + `&deliveryNo=${deliveryNo}`,
+          url: api.getOrderInfo + Id + `&deliveryNo=${DeliveryNo}`,
           success: res => {
             console.log('订单状态：', res.view)
             
-            const {DockNo, CheckInTime, DeliveryNo} = res.view
+            const {DockNo, CheckInTime} = res.view
             this.setDockNo(DockNo)
             this.setCheckInTime(CheckInTime)
-            this.setDeliveryNo(DeliveryNo)
           }
         })
       }

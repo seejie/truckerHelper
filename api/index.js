@@ -1,4 +1,4 @@
-import {baseUrl} from '../utils/config'
+import {baseUrl} from '../lib/config'
 
 export const api = {
   // 登录验证

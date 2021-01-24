@@ -2,6 +2,7 @@ import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
 import { store } from '../../store/index'
 import {post} from '../../api/methods'
 import {api} from '../../api/index'
+import { toast } from '../../lib/utils'
 
 Page({
   behaviors: [storeBindingsBehavior],
@@ -71,10 +72,10 @@ Page({
     const {name, tel, idCard, carNum, user: {Id}} = this.data
     // console.log(tel)
     // console.log(idCard)
-    if (!tel.trim()) return this.showErrMsg('手机号必填')
-    if (!/^1[0-9]{10}$/.test(tel)) return this.showErrMsg('无效手机号，请检查后重新填写~') 
-    if (!idCard.trim()) return this.showErrMsg('身份证必填')
-    if (!/\d{17}(\d|X|x)/.test(idCard)) return this.showErrMsg('无效身份证号，请检查后重新填写~')
+    if (!tel.trim()) return toast('手机号必填')
+    if (!/^1[0-9]{10}$/.test(tel)) return toast('无效手机号，请检查后重新填写~')
+    if (!idCard.trim()) return toast('身份证必填')
+    if (!/\d{17}(\d|X|x)/.test(idCard)) return toast('无效身份证号，请检查后重新填写~')
 
     post({
       url: api.submitUserInfo,
@@ -96,14 +97,4 @@ Page({
       }
     })
   },
-
-  // 展示错误提示
-  showErrMsg (txt) {
-    wx.showToast({
-      title: txt,
-      icon: 'none',
-      duration: 2000
-    })
-  },
-
 })

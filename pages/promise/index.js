@@ -1,4 +1,5 @@
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
+import { toast } from '../../lib/utils'
 import { store } from '../../store/index'
 
 Page({
@@ -18,14 +19,7 @@ Page({
 
   // 下一步
   nextStep () {
-    if (!this.data.checked) {
-      wx.showToast({
-        title: '请滑动到底部，并勾选我已阅读！',
-        icon: 'none',
-        duration: 2000
-      })
-      return
-    }
+    if (!this.data.checked) return toast('请滑动到底部，并勾选我已阅读！')
 
     const {NeedExam, ExamStatus} = this.data.user
     let url

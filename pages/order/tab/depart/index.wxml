@@ -1,6 +1,6 @@
 <view class="info">
   <view class="cell">
-    <view class="tag">送货单号：</view>{{orderId}}
+    <view class="tag">送货单号：</view>{{DeliveryNo}}
   </view>
   <view class="cell">
     <view class="tag">送货地址：</view>{{address}}

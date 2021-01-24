@@ -2,7 +2,7 @@ import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
 import { store } from '../../store/index'
 import {post} from '../../api/methods'
 import {api} from '../../api/index'
-import {guid} from '../../utils/util'
+import {guid} from '../../lib/utils'
 
 Page({
   behaviors: [storeBindingsBehavior],

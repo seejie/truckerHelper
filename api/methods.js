@@ -1,5 +1,6 @@
-const request = () => {}
+import { toast } from "../lib/utils"
 
+const request = () => {}
 const errHandle = () => {}
 
 export const get = options => {
@@ -33,14 +34,7 @@ export const post = options => {
       const {statusCode, data} = res
       if (statusCode !== 200) return
       const {ResultType, Message, ReturnObject} = data
-      if (ResultType !== '0') {
-        wx.showToast({
-          title: Message || '未知错误，请重试~',
-          icon: 'none',
-          duration: 2000
-        })   
-        return     
-      }
+      if (ResultType !== '0') return toast(Message || '未知错误，请重试~')
       success && success(ReturnObject)
     },
     fail (err) {
