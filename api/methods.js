@@ -24,7 +24,6 @@ export const get = options => {
 
 export const post = options => {
   const {url, data, success, fail} = options
-  // console.log(data)
   wx.request({
     url,
     method: 'POST',

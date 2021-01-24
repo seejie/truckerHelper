@@ -1,17 +1,8 @@
-import {post} from './api/methods'
-import {api} from './api/index'
-
 App({
-
-  globalData: {
-    userInfo: {},
-    sysConfig: {}
-  },
 
   onLaunch () {
     this.debug()
-    this.userLogin()
-    this.login()
+    // this.getUserAuthSetting()
   },
 
   debug () {
@@ -22,26 +13,6 @@ App({
     })
   },
 
-  // 用户登录
-  userLogin () {
-    wx.login({
-      success: res => {
-        // console.log('用户登录成功：', res)
-        // this.getUserPhoneNumber()
-        this.getUserAuthSetting()
-      },
-      fail: res => {
-        // console.log('用户登录失败：', res)
-      }
-    })
-  },
-
-  // 获取用户手机号
-  getUserPhoneNumber () {
-    // todo 点击button
-    
-  },
-
   // 获取用户授权信息
   getUserAuthSetting () {
     wx.getSetting({
@@ -49,13 +20,6 @@ App({
       success: res => {
         // console.log(res)
         const { authSetting: auth,  subscriptionsSetting: authMsg} = res
-        // 个人信息
-        if (auth['scope.userInfo']) {
-          this.getUserInfo()
-        } else {
-          this.requestUserInfo()
-        }
-
         // 位置信息
         if (auth['scope.userLocation']) {
           // this.getUserLocation()
@@ -76,22 +40,8 @@ App({
     })
   },
 
-  // 获取用户信息
-  getUserInfo () {
-    wx.getUserInfo({
-      withCredentials: true,
-      success: res => {
-        // console.log('获取用户信息成功：', res)
-      },
-      fail: err => {
-        // console.log('获取用户信息失败：', err)
-      }
-    })
-  },
-
   // 请求用户授权个人信息
   requestUserLocation () {
-    // todo 点击button
     wx.authorize({
       scope: 'scope.userLocation'
     }).then(res => {
@@ -111,22 +61,9 @@ App({
       })
   },
 
-  // 请求用户授权位置信息
-  requestUserInfo () {
-    // todo 点击button
-    wx.authorize({
-      scope: 'scope.userInfo'
-    }).then(res => {
-      // console.log('请求用户授权成功：', res)
-    }).catch(res => {
-      // console.log('请求用户授权失败：', res)
-    })
-  },
-
   // 请求用户授权订阅消息
   requestAuthMsg () {
     // todo 模板id
-    // todo 点击button 
     wx.requestSubscribeMessage({
       tmplIds: ['']
     }).then(res => {
@@ -146,28 +83,4 @@ App({
       // console.log('打开授权设置页面失败：', res)
     })
   },
-
-  // 登录验证
-  login () {
-    const driverId = '130c81313a3c44a6a57bd0f6158cdb90'
-    post({
-      url: api.login + driverId,
-      success: res => {
-        // console.log(res.view)
-        this.globalData.userInfo = res.view
-        this.getSysConfig(driverId)
-      }
-    })
-  },
-
-  // 获取系统配置
-  getSysConfig (driverId) {
-    post({
-      url: api.sysConfig + driverId,
-      success: res => {
-        console.log('系统配置：', res.view)
-        this.globalData.sysConfig = res.view
-      }
-    })
-  }
 })

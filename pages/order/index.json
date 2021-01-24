@@ -1,7 +1,7 @@
 {
   "usingComponents": {
     "tabBar": "../../component/tabBar",
-    "addOrder": "./tab/addOrder",
+    "add": "./tab/add",
     "depart": "./tab/depart",
     "arrive": "./tab/arrive",
     "queue": "./tab/queue",

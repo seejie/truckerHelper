@@ -1,7 +1,14 @@
+import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
+import { store } from '../../store/index'
 import {post} from '../../api/methods'
 import {api} from '../../api/index'
 
 Page({
+  behaviors: [storeBindingsBehavior],
+  storeBindings: {
+    store,
+    fields: ['user']
+  },
   data: {
     questions: []
   },
@@ -12,14 +19,13 @@ Page({
 
   // 获得题目
   getQuestions () {
-    const driverId = '130c81313a3c44a6a57bd0f6158cdb90'
+    const {Id} = this.data.user
     post({
-      url: api.getTrainingData + driverId,
+      url: api.getTrainingData + Id,
       success: res => {
-        console.log(res.View)
+        // console.log(res.View)
         const questions = res.View.map(el => {
-          console.log(el)
-          const answer = el.AnswerList.find(item => item => item.IsCorrect)
+          const answer = el.AnswerList.find(item => item.IsCorrect)
           el.answer = answer.Answer
           return el
         })

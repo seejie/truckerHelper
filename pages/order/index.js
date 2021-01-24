@@ -1,16 +1,14 @@
+
+import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
+import { store } from '../../store/index'
+
 Page({
-  data: {
-    currTab: 'add',
-    // currTab: 'depart',
-    // currTab: 'arrive',
-    // currTab: 'queue',
-    // currTab: 'unload',
+  behaviors: [storeBindingsBehavior],
+  storeBindings: {
+    store,
+    fields: ['currTab'],
+    actions: ['setCurrTab']
   },
-
-  onLoad () {
-    
-  },
-
   // 扫码
   onscanCode () {
     // todo 一维码还是二维码，提供测试图片
@@ -26,6 +24,6 @@ Page({
   // tab切换
   ontabChaned (e) {
     const {currTab} = e.detail
-    this.setData({ currTab })
+    this.setCurrTab(currTab)
   }
 })

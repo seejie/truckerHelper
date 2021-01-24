@@ -1,9 +1,9 @@
 <view class="wrapper">
-  <tabBar currTab="{{currTab}}" bind:tabChaned="ontabChaned"/>
+  <tabBar currTab="{{currTab}}" />
 
   <view class="pageController">
     <view class="page {{currTab === 'add' ? 'selected' : ''}}">
-      <addOrder bind:tabChaned="ontabChaned"/>
+      <add bind:tabChaned="ontabChaned"/>
     </view>
     
     <view class="page {{currTab === 'depart' ? 'selected' : ''}}">

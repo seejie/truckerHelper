@@ -1,7 +1,14 @@
+import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
+import { store } from '../../../../store/index'
 import {post} from '../../../../api/methods'
 import {api} from '../../../../api/index'
 
-Component({
+Component({ 
+  behaviors: [storeBindingsBehavior],
+  storeBindings: {
+    store,
+    fields: ['user']
+  },
   data: {
     currTab: 'order'
   },
@@ -9,10 +16,10 @@ Component({
     // 添加订单
     addOrder () {
       this.triggerEvent('tabChaned', {currTab: 'depart'}, {})
-      const driverId = '130c81313a3c44a6a57bd0f6158cdb90'
-      const deliveryNo = '21100006Supplier001'
+      const {Id} = this.data.user
+      const deliveryNo = '2110003350510107'
       post({
-        url: api.submitOrder + driverId + `&deliveryNo=${deliveryNo}`,
+        url: api.submitOrder + Id + `&deliveryNo=${deliveryNo}`,
         success: res => {
           // console.log(res)
           this.triggerEvent('tabChaned', {currTab: 'depart'}, {})

@@ -1,13 +1,14 @@
+import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
+import { store } from '../../store/index'
 import {post} from '../../api/methods'
 import {api} from '../../api/index'
 
-const app = getApp()
-
 Page({
-
-  /**
-   * 页面的初始数据
-   */
+  behaviors: [storeBindingsBehavior],
+  storeBindings: {
+    store,
+    fields: ['user']
+  },
   data: {
     carNum: ['', '', '', '', '', '', ''],
     name: '',
@@ -19,15 +20,12 @@ Page({
   },
 
   onReady () {
-    const user = app.globalData.userInfo
-    const {IdCard, Mobile, PlateNumber, DriverName} = user
-    // console.log(user)
-    const carNum = PlateNumber.split('')
+    const {IdCard, Mobile, PlateNumber, DriverName} = this.data.user
     this.setData({
       name: DriverName || '',
       tel: Mobile || '',
       idCard: IdCard || '',
-      carNum
+      carNum: PlateNumber ? PlateNumber.split('') : []
     })
   },
 
@@ -70,8 +68,7 @@ Page({
 
   // 保存
   onsubmit () {
-    const {name, tel, idCard, carNum} = this.data
-    const {Id} = app.globalData.userInfo
+    const {name, tel, idCard, carNum, user: {Id}} = this.data
     // console.log(tel)
     // console.log(idCard)
     if (!tel.trim()) return this.showErrMsg('手机号必填')

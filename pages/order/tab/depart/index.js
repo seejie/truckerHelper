@@ -2,11 +2,13 @@ import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
 import { store } from '../../../../store/index'
 import {post} from '../../../../api/methods'
 import {api} from '../../../../api/index'
+const computedBehavior = require('miniprogram-computed')
 
 Component({
-  behaviors: [storeBindingsBehavior],
+  behaviors: [storeBindingsBehavior, computedBehavior],
   storeBindings: {
     store,
+    fields: ['user', 'currTab'],
     actions: ['setDeliverAddr']
   },
   data: {
@@ -16,8 +18,11 @@ Component({
     address: '',
     arriveTime: ''
   },
-  ready () {
-    this.getMaterialDetail()
+  watch: {
+    currTab: function(tab) {
+      if (tab !== 'depart') return
+      this.getMaterialDetail()
+    },
   },
   methods: {
     // 确认装车
@@ -28,40 +33,25 @@ Component({
 
     // 确认发车
     ondepart () {
+      const {doubleConfirm} = this.data
+      if (!doubleConfirm) {
+        wx.showToast({
+          title: '请先勾选确认',
+          icon: 'none',
+          duration: 2000
+        }) 
+        return
+      }
       this.triggerEvent('tabChaned', {currTab: 'arrive'}, {})
-      wx.startLocationUpdateBackground({
-        success: res => {
-          // console.log(res)
-        },
-        fail: err => {
-          // console.log(err)
-          wx.showModal({
-            title: '温馨提示',
-            content: '为更好体验服务',
-            confirmText:"同意",
-            cancelText:"拒绝",
-            success (res) {
-              if (!res.confirm)  return
-              wx.openSetting({
-                success: res => {
-                  // console.log(res)
-                },
-                fail: err => {
-                  // console.log(err)
-                }
-              })
-            }
-          })
-        }
-      })
     },
 
     // 获取物料信息
     getMaterialDetail () {
-      const driverId = '130c81313a3c44a6a57bd0f6158cdb90'
-      const deliveryNo = '21100006Supplier001'
+      console.log(123)
+      const {Id} = this.data.user
+      const deliveryNo = '2110003350510107'
       post({
-        url: api.getMaterialDetail + driverId + `&deliveryNo=${deliveryNo}`,
+        url: api.getMaterialDetail + Id + `&deliveryNo=${deliveryNo}`,
         success: res => {
           const {Lines, ShipTo, DeliveryNo, SWETTime} = res.View
           this.setData({
@@ -74,9 +64,5 @@ Component({
         }
       })
     },
-
-    locationChanged (...arr) {
-      console.log(arr, 123)
-    }
   }
 })

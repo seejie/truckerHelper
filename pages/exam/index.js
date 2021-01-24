@@ -1,9 +1,15 @@
+import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
+import { store } from '../../store/index'
 import {post} from '../../api/methods'
 import {api} from '../../api/index'
 import {guid} from '../../utils/util'
 
-const app = getApp()
 Page({
+  behaviors: [storeBindingsBehavior],
+  storeBindings: {
+    store,
+    fields: ['user', 'sysConfig']
+  },
   data: {
     questions: []
   },
@@ -14,9 +20,9 @@ Page({
 
   // 获取考题
   getQuestions () {
-    const driverId = '130c81313a3c44a6a57bd0f6158cdb90'
+    const {Id} = this.data.user
     post({
-      url: api.getExamData + driverId,
+      url: api.getExamData + Id,
       success: res => {
         console.log(res.View)
         const questions = res.View.map(el => {
@@ -30,7 +36,7 @@ Page({
 
   // 结束考试
   onSubmit () {
-    console.log(this.data.questions, 111)
+    // console.log(this.data.questions)
     const {questions} = this.data
     let score = 0
     questions.forEach(el => {
@@ -44,7 +50,7 @@ Page({
     score = 80
     console.log(score)
 
-    const config = app.globalData.sysConfig.find(el=> el.category === 'ExamPassScore')
+    const config = this.data.sysConfig.find(el=> el.category === 'ExamPassScore')
     const date = new Date()
     date.setDate(date.getDate() + 10)
     const exp = date.toLocaleDateString().replace(/\//g, '-')
@@ -60,12 +66,14 @@ Page({
       title = '不通过'
       url = '/pages/training/index'
     }
-
+    // // todo
+    // wx.redirectTo({url})
+    // return
     wx.showModal({
       title,
       content: msg,
       showCancel: false,
-      success (res) {
+      success: res => {
         if (!res.confirm) return
         questions.forEach(el => delete el.selected)
 
@@ -86,11 +94,11 @@ Page({
         }
 
         const now = new Date().format('yyyy-MM-dd HH:mm:ss')
-        const driverId = '130c81313a3c44a6a57bd0f6158cdb90'
+        const {Id} = this.data.user
+
         const data = {
           ScoreId: guid().replace(/\-/g, ''),
-          DriverId: driverId,
-          WXOpenId: "小程序OpenId",
+          DriverId: Id,
           ExamTime: now,
           TotalScore: score,
           IsPassing: isPass ? 1 : 0,

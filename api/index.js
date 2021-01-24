@@ -2,7 +2,7 @@ import {baseUrl} from '../utils/config'
 
 export const api = {
   // 登录验证
-  login: `${baseUrl}/Login?driverId=`,
+  login: `${baseUrl}/Login?code=`,
   // 图片上传
   uploadImg: `${baseUrl}`,
   // 保存录入信息
