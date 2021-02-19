@@ -8,16 +8,17 @@ Page({
   behaviors: [storeBindingsBehavior],
   storeBindings: {
     store,
-    fields: ['user']
+    fields: ['user'],
+    actions: ['toggleShowKeyboard']
   },
   data: {
-    carNum: ['', '', '', '', '', '', ''],
+    carNum: [],
     name: '',
     tel: '',
     idCard: '',
     travelCodeImgs: [],
-    healthCodeImgs: [],
-    focusIdx: 0
+    healthCodeImgs: [{url: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=236151376,2917765395&fm=26&gp=0.jpg'}],
+    focusIdx: 7
   },
 
   onReady () {
@@ -27,27 +28,33 @@ Page({
       name: DriverName || '',
       tel: Mobile || '',
       idCard: IdCard || '',
-      carNum: PlateNumber ? PlateNumber.split('') : []
+      carNum: PlateNumber ? PlateNumber.split('') : ['', '', '', '', '', '', '']
     })
   },
 
   onfocus (e) {
-    const {target: {dataset: {idx}}} = e
-    // console.log(idx)
-    const arr = this.data.carNum
-    const i = arr.findIndex(el => !el)
-    if (i > idx) return
-    this.setData({focusIdx: i})
+    console.log(1)
+    this.toggleShowKeyboard(true)
+    const {detail: {value: val}} = e
+    const carNum = this.data.carNum
+    // 如果没有值
+    if (!val) {
+      const focusIdx = carNum.findIndex(el => !el)
+      this.setData({focusIdx})
+    }
   },
 
   // 输入车牌号
   onCarNumChanged (e) {
     const {detail: {value: val}, target: {dataset: {idx}}} = e
     const carNum = this.data.carNum
-    const i = carNum.findIndex(el => !el)
-    if (+idx > i) return
     carNum[+idx] = val
-    this.setData({carNum, focusIdx: +idx + 1})
+    // 如果没有值
+    if (!val) {
+      this.setData({carNum, focusIdx: +idx})
+    } else {
+      this.setData({carNum, focusIdx: +idx + 1})
+    }
   },
 
   // 输入手机号
@@ -97,5 +104,63 @@ Page({
         })
       }
     })
+  },
+
+  // 删除预览图片
+  delCurrImg (event) {
+    const {detail: {index}, currentTarget: {dataset: {key}}} = event
+    const type = `${key}CodeImgs`
+    const arr = this.data[type]
+    arr.splice(index, 1)
+    this.setData({[type]: arr})
+  },
+
+  // 文件上传
+  afterRead (event) {
+    // const { file } = event.detail;
+    const {detail: {file}, currentTarget: {dataset: {key}}} = event
+    console.log(key)
+    wx.getFileSystemManager().readFile({
+      filePath: file.url, //选择图片返回的相对路径
+      encoding: 'base64', //编码格式
+      success: res => {
+        const base64 = res.data
+        const handle = 'data:image/png;base64,'
+        // console.log('base64：', base64) 
+        post({
+          url: api.uploadImg,
+          data: {
+            Image: handle + base64
+          },
+          success: res => {
+            console.log(res)
+            const type = `${key}CodeImgs`
+            const arr = this.data[type]
+            arr.push({url: res.imageAdress})
+            console.log(arr)
+            this.setData({[type]: arr})
+          }
+        })
+      }
+    })
+  },
+
+  // 文件上传
+  afterRead2(event) {
+    console.log(event)
+    const { file } = event.detail;
+    // 当设置 mutiple 为 true 时, file 为数组格式，否则为对象格式
+    wx.uploadFile({
+      url: 'https://example.weixin.qq.com/upload', // 仅为示例，非真实的接口地址
+      filePath: file.url,
+      name: 'file',
+      formData: { user: 'test' },
+      success(res) {
+        // 上传完成需要更新 fileList
+        const { fileList = [] } = this.data;
+        fileList.push({ ...file, url: res.data });
+        this.setData({ fileList });
+      },
+    });
   },
 })

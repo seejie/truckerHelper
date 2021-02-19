@@ -4,7 +4,7 @@ export const api = {
   // 登录验证
   login: `${baseUrl}/Login?code=`,
   // 图片上传
-  uploadImg: `${baseUrl}/`,
+  uploadImg: `${baseUrl}/UploadImage`,
   // 保存录入信息
   submitUserInfo: `${baseUrl}/UpdateDriverInfo`,
   // 查询培训题目

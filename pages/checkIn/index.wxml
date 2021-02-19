@@ -1,7 +1,8 @@
 <import src="../../template/tips/index.wxml" />
 
 <view class="wrapper">
-  <text class="title">请输入车牌号</text>
+  <text class="title">请输入车牌号:{{carNum}}
+  </text>
   <view class="pannel carNum">
     <view class="input-group">
       <input type="text" class="box first" maxlength="1" focus="{{focusIdx === 0}}"
@@ -11,16 +12,16 @@
         bindinput="onCarNumChanged" data-idx="1" bindfocus="onfocus"  value="{{ carNum[1] }}" />
     </view>
     <view class="dot"></view>
+    <input type="text" class="box" maxlength="1" focus="{{focusIdx === 2}}"
+      bindinput="onCarNumChanged" data-idx="2" bindfocus="onfocus"  value="{{ carNum[2] }}" />
     <input type="text" class="box" maxlength="1" focus="{{focusIdx === 3}}"
-      bindinput="onCarNumChanged" data-idx="2" bindfocus="onfocus"  value="{{ carNum[3] }}" />
+      bindinput="onCarNumChanged" data-idx="3" bindfocus="onfocus" value="{{ carNum[3] }}" />
     <input type="text" class="box" maxlength="1" focus="{{focusIdx === 4}}"
-      bindinput="onCarNumChanged" data-idx="3" bindfocus="onfocus" value="{{ carNum[4] }}" />
+     bindinput="onCarNumChanged" data-idx="4" bindfocus="onfocus"  value="{{ carNum[4] }}" />
     <input type="text" class="box" maxlength="1" focus="{{focusIdx === 5}}"
-     bindinput="onCarNumChanged" data-idx="4" bindfocus="onfocus"  value="{{ carNum[5] }}" />
+     bindinput="onCarNumChanged" data-idx="5" bindfocus="onfocus"  value="{{ carNum[5] }}" />
     <input type="text" class="box" maxlength="1" focus="{{focusIdx === 6}}"
-     bindinput="onCarNumChanged" data-idx="5" bindfocus="onfocus"  value="{{ carNum[6] }}" />
-    <input type="text" class="box" maxlength="1" focus="{{focusIdx === 7}}"
-     bindinput="onCarNumChanged" data-idx="6" bindfocus="onfocus"  value="{{ carNum[7] }}" />
+     bindinput="onCarNumChanged" data-idx="6" bindfocus="onfocus"  value="{{ carNum[6] }}" />
     <view class="box">新能源</view>
   </view>
 
@@ -63,16 +64,24 @@
   <view class="pannel view">
     <van-uploader file-list="{{ travelCodeImgs }}" 
       class="uploader"
-      bind:after-read="afterRead" />
+      bind:after-read="afterRead"
+      data-key="travel"
+      bind:delete="delCurrImg"
+    />
   </view>
 
   <text class="title">健康码截图</text>
   <view class="pannel view">
-    <van-uploader file-list="{{ travelCodeImgs }}" 
+    <van-uploader file-list="{{ healthCodeImgs }}" 
       class="uploader"
-      bind:after-read="afterRead" />
+      bind:after-read="afterRead"
+      data-key="health"
+      bind:delete="delCurrImg"
+    />
   </view>
   
   <template is="tips" data="{{txt: '请在录入以下信息后，点击“保存”按钮'}}"/>
   <view class="btn submit" bindtap="onsubmit">保存</view>
+
+  <!-- <keyboard /> -->
 </view>

@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "keyboard": "../../component/keyboard"
+  },
   "navigationBarTitleText": "完善司机信息"
 }

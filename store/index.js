@@ -11,6 +11,8 @@ const state = {
   DockNo: '',
   CheckInTime: '',
   DeliveryNo: '',
+  // 显示虚拟键盘
+  showKeyboard: false
 }
 
 export const store = observable({
@@ -49,4 +51,7 @@ export const store = observable({
   setDeliveryNo: action(function (payload) {
     this.DeliveryNo = payload
   }),
+  toggleShowKeyboard: action(function (payload) {
+    this.showKeyboard = payload
+  })
 })

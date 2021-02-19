@@ -109,7 +109,7 @@ view.dot{
 }
 
 .uploader{
-  width: 116rpx;
+  /* width: 116rpx; */
   height: 116rpx;
 }
 
@@ -121,4 +121,9 @@ view.dot{
 
 .submit{
   margin: 0 auto;
+}
+
+.van-uploader__preview-image {
+  width: 116rpx !important;
+  height: 116rpx !important;
 }
