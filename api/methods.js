@@ -1,8 +1,5 @@
 import { toast } from "../lib/utils"
 
-const request = () => {}
-const errHandle = () => {}
-
 export const get = options => {
   const {url, data, success, fail} = options
   wx.request({
@@ -46,7 +43,7 @@ export const post = options => {
       // console.log(res)
       const {statusCode} = res
       if (statusCode === 200) return
-      toast(`接口异常：code => ${statusCode}`)
+      toast(`接口异常：code => [${statusCode}] api => [${url}]`)
       fail && fail('接口异常，未知错误')
     }
   })
