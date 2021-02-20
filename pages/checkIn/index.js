@@ -23,7 +23,7 @@ Page({
 
   onReady () {
     const {IdCard, Mobile, PlateNumber, DriverName} = this.data.user
-
+    console.log(this.data.user)
     this.setData({
       name: DriverName || '',
       tel: Mobile || '',
@@ -95,17 +95,35 @@ Page({
         DriverName: name,
         IdCard: idCard,
         Mobile: tel,
-        // WXOpenId: "小程序OpenId",
-        // WXNickName: "昵称",
-        // WXAvatarUrl: "头像链接",
         PlateNumber: carNum.join(''),
         HealthCode: healthCode[0].url,
         TourCode: tourCode[0].url
       },
       success: res => {
         // console.log(res)
-        wx.redirectTo({
-          url: '/pages/promise/index',
+        wx.showModal({
+          title: '温馨提示',
+          content: '为更好体验服务',
+          confirmText:"同意",
+          cancelText:"拒绝",
+          success (res) {
+            if (!res.confirm)  return
+            wx.requestSubscribeMessage({
+              tmplIds: ['0c1rfN54slTKy0HV2aWku23dCrKeGnvjqGgZioFEoE0'],
+              success (res) { 
+                console.log('授权订阅消息成功：', res)
+                wx.redirectTo({
+                  url: '/pages/promise/index',
+                })
+              },
+              fail (res) {
+                console.log('授权订阅消息失败：', res)
+                wx.redirectTo({
+                  url: '/pages/promise/index',
+                })
+              }
+            })
+          }
         })
       }
     })
