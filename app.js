@@ -26,13 +26,6 @@ App({
         } else {
           // this.requestUserLocation()
         }
-
-        // 消息订阅信息
-        if (authMsg.mainSwitch) {
-          // this.requestAuthMsg()
-        } else {
-          // this.openUserAuthSetting()
-        }
       },
       fail: err => {
         // console.log('获取用户已授权信息失败：', err)
@@ -59,28 +52,5 @@ App({
       }).catch(res => {
         // console.log('获取用户位置信息失败：', res)
       })
-  },
-
-  // 请求用户授权订阅消息
-  requestAuthMsg () {
-    // todo 模板id
-    wx.requestSubscribeMessage({
-      tmplIds: ['']
-    }).then(res => {
-      // console.log('用户授权订阅消息成功：', res)
-    }).catch(res => { 
-      // console.log('用户授权订阅消息失败：', res)
-    })
-  },
-
-  // 打开用户授权设置页面
-  openUserAuthSetting () {
-    wx.openSetting({
-      withSubscriptions: true
-    }).then(res => {
-      // console.log('打开授权设置页面成功：', res)
-    }).catch(res => {
-      // console.log('打开授权设置页面失败：', res)
-    })
-  },
+  }
 })

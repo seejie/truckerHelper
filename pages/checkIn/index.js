@@ -3,7 +3,8 @@ import { store } from '../../store/index'
 import {post} from '../../api/methods'
 import {api} from '../../api/index'
 import { toast } from '../../lib/utils'
-
+import {tmpId, tmp2Id} from '../../lib/constant'
+console.log(tmpId)
 Page({
   behaviors: [storeBindingsBehavior],
   storeBindings: {
@@ -101,27 +102,63 @@ Page({
       },
       success: res => {
         // console.log(res)
-        wx.showModal({
-          title: '温馨提示',
-          content: '为更好体验服务',
-          confirmText:"同意",
-          cancelText:"拒绝",
-          success (res) {
-            if (!res.confirm)  return
-            wx.requestSubscribeMessage({
-              tmplIds: ['0c1rfN54slTKy0HV2aWku23dCrKeGnvjqGgZioFEoE0'],
-              success (res) { 
-                console.log('授权订阅消息成功：', res)
-                wx.redirectTo({
-                  url: '/pages/promise/index',
-                })
-              },
-              fail (res) {
-                console.log('授权订阅消息失败：', res)
-                wx.redirectTo({
-                  url: '/pages/promise/index',
-                })
-              }
+        this.authSetting()
+      }
+    })
+  },
+
+  // 查询用户是否订阅消息
+  authSetting () {
+    wx.getSetting({
+      withSubscriptions: true,
+      success: res => {
+        // console.log(res)
+        const {subscriptionsSetting: {itemSettings, mainSwitch}} = res
+        console.log(res)
+        console.log(mainSwitch)
+        console.log(itemSettings && itemSettings[tmpId])
+        // !mainSwitch && this.openUserAuthSetting()
+        this.openUserAuthSetting()
+      },
+      fail: err => {
+        console.log(err)
+        this.subscribeMessage()
+      }
+    })
+  },
+
+  // 打开用户授权设置页面
+  openUserAuthSetting () {
+    wx.openSetting({
+      withSubscriptions: true
+    }).then(res => {
+      // console.log('打开授权设置页面成功：', res)
+    }).catch(res => {
+      // console.log('打开授权设置页面失败：', res)
+    })
+  },
+
+  // 订阅消息
+  subscribeMessage () {
+    wx.showModal({
+      title: '温馨提示',
+      content: '为更好体验服务',
+      confirmText:"同意",
+      cancelText:"拒绝",
+      success (res) {
+        if (!res.confirm)  return
+        wx.requestSubscribeMessage({
+          tmplIds: [tmpId, tmp2Id],
+          success (res) { 
+            console.log('授权订阅消息成功：', res)
+            wx.redirectTo({
+              url: '/pages/promise/index',
+            })
+          },
+          fail (res) {
+            console.log('授权订阅消息失败：', res)
+            wx.redirectTo({
+              url: '/pages/promise/index',
             })
           }
         })
@@ -140,7 +177,7 @@ Page({
   afterRead (event) {
     // const { file } = event.detail;
     const {detail: {file}, currentTarget: {dataset: {key}}} = event
-    console.log(key)
+    // console.log(key)
     wx.getFileSystemManager().readFile({
       filePath: file.url, //选择图片返回的相对路径
       encoding: 'base64', //编码格式
