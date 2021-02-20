@@ -62,17 +62,17 @@
 
   <text class="title">行程码截图</text>
   <view class="pannel view">
-    <van-uploader file-list="{{ travelCodeImgs }}" 
+    <van-uploader file-list="{{ tourCode }}" 
       class="uploader"
       bind:after-read="afterRead"
-      data-key="travel"
+      data-key="tour"
       bind:delete="delCurrImg"
     />
   </view>
 
   <text class="title">健康码截图</text>
   <view class="pannel view">
-    <van-uploader file-list="{{ healthCodeImgs }}" 
+    <van-uploader file-list="{{ healthCode }}" 
       class="uploader"
       bind:after-read="afterRead"
       data-key="health"

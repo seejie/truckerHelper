@@ -34,11 +34,11 @@ Page({
   // 登录验证
   login (code) {
     post({
-      url: api.login + code,
+      url: api.loginSys + code,
       success: res => {
         const user = res.view
         this.setUser(user)
-        // console.log('用户信息：', user)
+        console.log('用户信息：', user)
         this.getSysConfig(user.Id)
         this.setData({needUserAuth: !user.Mobile})
       }

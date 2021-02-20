@@ -16,8 +16,8 @@ Page({
     name: '',
     tel: '',
     idCard: '',
-    travelCodeImgs: [],
-    healthCodeImgs: [],
+    tourCode: [],
+    healthCode: [],
     focusIdx: 7
   },
 
@@ -77,13 +77,16 @@ Page({
 
   // 保存
   onsubmit () {
-    const {name, tel, idCard, carNum, user: {Id}} = this.data
+    const {name, tel, idCard, carNum, user: {Id}, tourCode, healthCode} = this.data
     // console.log(tel)
     // console.log(idCard)
     if (!tel.trim()) return toast('手机号必填')
     if (!/^1[0-9]{10}$/.test(tel)) return toast('无效手机号，请检查后重新填写~')
     if (!idCard.trim()) return toast('身份证必填')
     if (!/\d{17}(\d|X|x)/.test(idCard)) return toast('无效身份证号，请检查后重新填写~')
+
+    if (!tourCode.length) return toast('请上传行程码截图~')
+    if (!healthCode.length) return toast('请上传健康码截图~')
 
     post({
       url: api.submitUserInfo,
@@ -92,10 +95,12 @@ Page({
         DriverName: name,
         IdCard: idCard,
         Mobile: tel,
-        WXOpenId: "小程序OpenId",
-        WXNickName: "昵称",
-        WXAvatarUrl: "头像链接",
+        // WXOpenId: "小程序OpenId",
+        // WXNickName: "昵称",
+        // WXAvatarUrl: "头像链接",
         PlateNumber: carNum.join(''),
+        HealthCode: healthCode[0].url,
+        TourCode: tourCode[0].url
       },
       success: res => {
         // console.log(res)
@@ -108,11 +113,9 @@ Page({
 
   // 删除预览图片
   delCurrImg (event) {
-    const {detail: {index}, currentTarget: {dataset: {key}}} = event
-    const type = `${key}CodeImgs`
-    const arr = this.data[type]
-    arr.splice(index, 1)
-    this.setData({[type]: arr})
+    const {currentTarget: {dataset: {key}}} = event
+    const type = `${key}Code`
+    this.setData({[type]: []})
   },
 
   // 文件上传
@@ -133,12 +136,8 @@ Page({
             Image: handle + base64
           },
           success: res => {
-            console.log(res)
-            const type = `${key}CodeImgs`
-            const arr = this.data[type]
-            arr.push({url: res.imageAdress})
-            console.log(arr)
-            this.setData({[type]: arr})
+            const type = `${key}Code`
+            this.setData({[type]: [{url: res.imageAdress}]})
           }
         })
       }

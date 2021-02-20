@@ -2,7 +2,7 @@ import {baseUrl} from '../lib/config'
 
 export const api = {
   // 登录验证
-  login: `${baseUrl}/Login?code=`,
+  loginSys: `${baseUrl}/Login?code=`,
   // 图片上传
   uploadImg: `${baseUrl}/UploadImage`,
   // 保存录入信息
