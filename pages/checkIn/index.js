@@ -159,7 +159,7 @@ Page({
         console.log(mainSwitch)
         console.log(itemSettings && itemSettings[tmpId])
         !mainSwitch && this.openUserAuthSetting()
-        // this.openUserAuthSetting()
+        this.jump2next()
       },
       fail: err => {
         console.log(err)
@@ -193,18 +193,21 @@ Page({
           tmplIds: [tmpId, tmp2Id, tmp3Id],
           success (res) { 
             console.log('授权订阅消息成功：', res)
-            wx.redirectTo({
-              url: '/pages/promise/index',
-            })
+            this.jump2next()
           },
           fail (res) {
             console.log('授权订阅消息失败：', res)
-            wx.redirectTo({
-              url: '/pages/promise/index',
-            })
+            this.jump2next()
           }
         })
       }
+    })
+  },
+
+  // 跳转承诺书
+  jump2next () {
+    wx.redirectTo({
+      url: '/pages/promise/index',
     })
   },
 
