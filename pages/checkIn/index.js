@@ -3,7 +3,7 @@ import { store } from '../../store/index'
 import {post} from '../../api/methods'
 import {api} from '../../api/index'
 import { toast } from '../../lib/utils'
-import {tmpId, tmp2Id} from '../../lib/constant'
+import {tmpId, tmp2Id, tmp3Id, tmp4Id} from '../../lib/constant'
 console.log(tmpId)
 Page({
   behaviors: [storeBindingsBehavior],
@@ -23,6 +23,47 @@ Page({
   },
 
   onReady () {
+
+    // wx.showModal({
+    //   title: '温馨提示',
+    //   content: '为更好体验服务',
+    //   confirmText:"同意",
+    //   cancelText:"拒绝",
+    //   success (res) {
+    //     if (!res.confirm)  return
+    //     wx.requestSubscribeMessage({
+    //       // tmplIds: [tmpId, tmp2Id, tmp3Id, tmp4Id],
+    //       tmplIds: [tmpId, tmp2Id, tmp3Id],
+    //       success (res) { 
+    //         console.log('授权订阅消息成功：', res)
+    //       },
+    //       fail (res) {
+    //         console.log('授权订阅消息失败：', res)
+    //       }
+    //     })
+    //   }
+    // })
+
+    // wx.showModal({
+    //   title: '温馨提示',
+    //   content: '为更好体验服务',
+    //   confirmText:"同意",
+    //   cancelText:"拒绝",
+    //   success (res) {
+    //     if (!res.confirm)  return
+    //     wx.requestSubscribeMessage({
+    //       // tmplIds: [tmpId, tmp2Id, tmp3Id, tmp4Id],
+    //       tmplIds: [tmp4Id],
+    //       success (res) { 
+    //         console.log('授权订阅消息成功：', res)
+    //       },
+    //       fail (res) {
+    //         console.log('授权订阅消息失败：', res)
+    //       }
+    //     })
+    //   }
+    // })
+
     const {IdCard, Mobile, PlateNumber, DriverName} = this.data.user
     console.log(this.data.user)
     this.setData({
@@ -142,13 +183,14 @@ Page({
   subscribeMessage () {
     wx.showModal({
       title: '温馨提示',
-      content: '为更好体验服务',
+      content: '为了更及时的获得配送过程中的消息通知，请您同意以下订阅消息通知!',
       confirmText:"同意",
       cancelText:"拒绝",
       success (res) {
         if (!res.confirm)  return
         wx.requestSubscribeMessage({
-          tmplIds: [tmpId, tmp2Id],
+          // tmplIds: [tmpId, tmp2Id, tmp3Id, tmp4Id],
+          tmplIds: [tmpId, tmp2Id, tmp3Id],
           success (res) { 
             console.log('授权订阅消息成功：', res)
             wx.redirectTo({
