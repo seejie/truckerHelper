@@ -158,8 +158,8 @@ Page({
         console.log(res)
         console.log(mainSwitch)
         console.log(itemSettings && itemSettings[tmpId])
-        // !mainSwitch && this.openUserAuthSetting()
-        this.openUserAuthSetting()
+        !mainSwitch && this.openUserAuthSetting()
+        // this.openUserAuthSetting()
       },
       fail: err => {
         console.log(err)
