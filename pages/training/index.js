@@ -25,7 +25,7 @@ Page({
       success: res => {
         // console.log(res.View)
         const questions = res.View.map(el => {
-          const answer = el.AnswerList.find(item => item.IsCorrect)
+          const answer = el.AnswerList.find(item => item.IsCorrect === '1')
           el.answer = answer.Answer
           return el
         })

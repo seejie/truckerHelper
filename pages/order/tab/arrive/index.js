@@ -108,9 +108,9 @@ Component({
           const threshold = config.key_name
     
           // todo
-          setTimeout(() =>{
-            this.triggerEvent('tabChaned', {currTab: 'queue'}, {})
-          }, 3000)
+          // setTimeout(() =>{
+          //   this.triggerEvent('tabChaned', {currTab: 'queue'}, {})
+          // }, 3000)
           if (distance >= +threshold) return 
           this.triggerEvent('tabChaned', {currTab: 'queue'}, {})
         },

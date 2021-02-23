@@ -42,10 +42,10 @@ Component({
       setInterval(request, +frequency * 1000)
 
       // todo
-      setTimeout(() => {
-        this.setDockNo(20)
-        this.setCheckInTime('2021-02-02')
-      }, 3000)
+      // setTimeout(() => {
+      //   this.setDockNo(20)
+      //   this.setCheckInTime('2021-02-02')
+      // }, 3000)
 
       // 判断订单状态，待卸货
       setTimeout(() => {

@@ -64,13 +64,15 @@ Page({
     //   }
     // })
 
-    const {IdCard, Mobile, PlateNumber, DriverName} = this.data.user
+    const {IdCard, Mobile, PlateNumber, DriverName, HealthCode, TourCode} = this.data.user
     console.log(this.data.user)
     this.setData({
       name: DriverName || '',
       tel: Mobile || '',
       idCard: IdCard || '',
-      carNum: PlateNumber ? PlateNumber.split('') : ['', '', '', '', '', '', '']
+      carNum: PlateNumber ? PlateNumber.split('') : ['', '', '', '', '', '', ''],
+      tourCode: [{url: TourCode}],
+      healthCode: [{url: HealthCode}],
     })
   },
 

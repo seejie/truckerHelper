@@ -47,8 +47,6 @@ Page({
       if (!IsCorrect) return
       score+=AnswerValue
     })
-    score = 80
-    console.log(score)
 
     const config = this.data.sysConfig.find(el=> el.category === 'ExamPassScore')
     const date = new Date()
