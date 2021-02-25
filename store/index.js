@@ -17,7 +17,7 @@ const state = {
 
 export const store = observable({
   ...state,
-  ...mock,
+  // ...mock,
 
   // actions
   setUser: action(function (payload) {
