@@ -8,7 +8,6 @@ Component({
   computed: {
     orderImg(data) {
       const active = data.currTab === 'order'
-      const src = data.currTab === 'order' ? '../../img/order.png' : ''
       return `../../img/order${active ? '-active' : ''}.png`
     },
     myImg(data){

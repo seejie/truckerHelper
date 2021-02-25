@@ -37,7 +37,8 @@ Page({
   // 开始考试
   onExam () {
     wx.redirectTo({
-      url: '/pages/exam/index',
+      url: '/pages/beforeExam/index',
+      // url: '/pages/exam/index',
     })
   }
 })

@@ -4,6 +4,7 @@
     "pages/checkIn/index",
     "pages/training/index",
     "pages/notTest/index",
+    "pages/beforeExam/index",
     "pages/exam/index",
     "pages/order/index",
     "pages/my/index",

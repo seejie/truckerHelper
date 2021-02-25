@@ -1,7 +1,8 @@
 <import src="../../template/tips/index.wxml" />
 
 <view class="wrapper">
-  <text class="title">请输入车牌号:{{carNum}}
+  <text class="title">请输入车牌号
+  <!-- {{carNum}} -->
   </text>
   <view class="pannel carNum">
     <view class="input-group">

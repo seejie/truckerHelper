@@ -1,0 +1,33 @@
+
+.wrapper{
+  display: flex;
+  flex-direction: column;
+}
+
+.main{
+  /* margin-bottom: 150rpx; */
+  background-color: #fff;
+  overflow-y: scroll;
+  background-color: #f6f6f6;
+  overflow-y: scroll;
+  height: calc(100% - 88rpx - 30rpx);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+video{
+  width: 100%;
+}
+
+.btn{
+  position: absolute;
+  left: 30rpx;
+  bottom: 30rpx;
+}
+
+.option{
+  padding: 25rpx 25rpx 25rpx 30rpx;
+  border-top: 1rpx solid #E5E5E5;
+}
+
