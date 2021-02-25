@@ -37,7 +37,7 @@ Page({
 
   // 结束考试
   onSubmit () {
-    // console.log(this.data.questions)
+    console.log(this.data.questions)
     const {questions} = this.data
     let score = 0
     questions.forEach(el => {
@@ -85,8 +85,7 @@ Page({
           IsPassing: isPass ? 1 : 0,
           Questions: questions
         }
-        console.log(data)
-        return
+        
         post({
           url: api.submitAnswer,
           data,

@@ -2,6 +2,5 @@
   <view class="main">
    <video src="{{videoUrl}}"></video>
   </view>
-
   <view class="btn" bindtap="onExam">开始考试</view>
 </view>
