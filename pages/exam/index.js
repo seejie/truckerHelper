@@ -37,7 +37,7 @@ Page({
 
   // 结束考试
   onSubmit () {
-    console.log(this.data.questions)
+    // console.log(this.data.questions)
     const {questions} = this.data
     let score = 0
     questions.forEach(el => {
@@ -72,7 +72,23 @@ Page({
       showCancel: false,
       success: res => {
         if (!res.confirm) return
-        questions.forEach(el => delete el.selected)
+        const answers = questions.map(el => {
+          const {QuestionId, Content, Sequence, QuestionType, AnswerList, selected} = el
+          const {Answer, AnswerValue, Sequence: idx} = AnswerList[selected]
+
+          return {
+            QuestionId,
+            Content,
+            Sequence,
+            QuestionType: QuestionType === '单选' ? 1:2,
+            QuestionScore: AnswerValue,
+            Answers: {
+              Answer,
+              AnswerValue,
+              Sequence: idx
+            }
+          }
+        })
 
         const now = new Date().format('yyyy-MM-dd HH:mm:ss')
         const {Id} = this.data.user
@@ -83,9 +99,9 @@ Page({
           ExamTime: now,
           TotalScore: score,
           IsPassing: isPass ? 1 : 0,
-          Questions: questions
+          Questions: answers
         }
-        
+      
         post({
           url: api.submitAnswer,
           data,
