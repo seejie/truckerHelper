@@ -170,11 +170,18 @@
   </view>
   
   <template is="tips" data="{{txt: '请在录入以下信息后，点击“保存”按钮'}}"/>
+  <van-checkbox value="{{ checked }}" icon-size="20px"
+    custom-class="agreement-root"
+    bind:change="onAgreementChange" class="agreement">我已阅读并同意：
+    <text class="agreement-txt" catchtap="showAgreement">《信息服务协议》</text>及
+    <text class="agreement-txt" catchtap="showAgreement">《隐私政策》</text>
+  </van-checkbox>
   <view class="btn submit" bindtap="onsubmit">保存</view>
   <!-- 提交车牌 -->
   <!-- <button class="carNumberBtn" bindtap='submitNumber' style="background: #333333;color:#fff;" type="default">确定</button> -->
 
   <!-- 虚拟键盘 -->
+  <!-- todo KeyboardState -->
   <view class="keyboard" hidden='{{!KeyboardState}}'>
     <view class="keyboardClose">
       <view class="keyboardClose_btn" bindtap='closeKeyboard'>关闭</view>

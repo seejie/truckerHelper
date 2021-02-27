@@ -119,6 +119,19 @@ view.dot{
   height: 116rpx !important;
 }
 
+.agreement-root{
+  padding: 0 30rpx 20rpx 30rpx;
+  margin-top: -10rpx;
+}
+
+.agreement{
+  font-size: 26rpx;
+}
+
+.agreement-txt{
+  color: red;
+}
+
 .submit{
   margin: 0 auto;
 }

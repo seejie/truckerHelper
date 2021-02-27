@@ -31,7 +31,6 @@ Page({
       success: res => {
         // console.log('用户登录成功：', res.code)
         this.login(res.code)
-
       },
       fail: res => {
         console.log('用户登录失败：', res)
@@ -50,8 +49,13 @@ Page({
         const user = res.view
         this.setUser(user)
         console.log('用户信息：', user)
-        this.getSysConfig(user.Id)
-        this.setData({ needUserAuth: !user.Mobile })
+        const {DeliveryOrderNo} = user
+        if (!DeliveryOrderNo) {
+          this.getSysConfig(user.Id)
+          this.setData({ needUserAuth: !user.Mobile })
+        } else {
+          console.log(2)
+        }
       }
     })
   },
@@ -97,7 +101,7 @@ Page({
 
   jump2Next() {
     wx.redirectTo({
-      url: '/pages/agreement/index',
+      url: '/pages/checkIn/index',
     })
   }
 })

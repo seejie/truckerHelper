@@ -281,7 +281,8 @@ Page({
     idCard: '',
     tourCode: [],
     healthCode: [],
-    focusIdx: 7
+    focusIdx: 7,
+    checked: false
   },
   watch: {
     carNum(carNum) {
@@ -393,7 +394,7 @@ Page({
 
   // 保存
   onsubmit () {
-    let {name, tel, idCard, carNum, user: {Id}, tourCode, healthCode} = this.data
+    let {name, tel, idCard, carNum, user: {Id}, tourCode, healthCode, checked} = this.data
     //判断车牌号
     if(carNum.length < 7) {
       return wx.showToast({
@@ -408,6 +409,7 @@ Page({
 
     if (!tourCode.length) return toast('请上传行程码截图~')
     if (!healthCode.length) return toast('请上传健康码截图~')
+    if (!checked) return toast('请勾选我已阅读')
 
     //如果车牌号大于8位
     carNum = carNum.length > 8 ? carNum.slice(0,8) : carNum
@@ -434,13 +436,17 @@ Page({
     wx.getSetting({
       withSubscriptions: true,
       success: res => {
-        // console.log(res)
+        console.log(res, 2222)
         const {subscriptionsSetting: {itemSettings, mainSwitch}} = res
         console.log(res)
         console.log(mainSwitch)
         console.log(itemSettings && itemSettings[tmpId])
         !mainSwitch && this.openUserAuthSetting()
-        this.jump2next()
+        if (itemSettings && itemSettings[tmpId]) {
+          this.jump2next()
+        } else {
+          this.subscribeMessage()
+        }
       },
       fail: err => {
         console.log(err)
@@ -462,6 +468,7 @@ Page({
 
   // 订阅消息
   subscribeMessage () {
+    const self = this
     wx.showModal({
       title: '温馨提示',
       content: '为了更及时的获得配送过程中的消息通知，请您同意以下订阅消息通知!',
@@ -474,11 +481,11 @@ Page({
           tmplIds: [tmpId, tmp2Id, tmp3Id],
           success (res) { 
             console.log('授权订阅消息成功：', res)
-            this.jump2next()
+            self.jump2next()
           },
           fail (res) {
             console.log('授权订阅消息失败：', res)
-            this.jump2next()
+            self.jump2next()
           }
         })
       }
@@ -522,6 +529,17 @@ Page({
           }
         })
       }
+    })
+  },
+
+  onAgreementChange () {
+    const bool = this.data.checked
+    this.setData({checked: !bool})
+  },
+
+  showAgreement () {
+    wx.redirectTo({
+      url: '/pages/agreement/index',
     })
   }
 })

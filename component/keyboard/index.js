@@ -19,7 +19,7 @@ Page({
     ],
     carnum: [],
     showNewPower: false,
-    KeyboardState: true
+    KeyboardState: false
   },
   // 选中点击设置
   bindChoose(e) {
