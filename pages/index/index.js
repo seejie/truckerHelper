@@ -1,7 +1,7 @@
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
 import { store } from '../../store/index'
-import {post} from '../../api/methods'
-import {api} from '../../api/index'
+import { post } from '../../api/methods'
+import { api } from '../../api/index'
 import { toast } from '../../lib/utils'
 
 Page({
@@ -11,28 +11,39 @@ Page({
     actions: ['setUser', 'setSysConfig']
   },
   data: {
-    needUserAuth: false
+    needUserAuth: false,
   },
 
-  onLoad () {
+  onLoad() {
     this.userLogin()
   },
 
+  tipAgree: function () {
+    this.setData({
+      isAgree: false
+    })
+  },
+
   // 用户登录
-  userLogin () {
+  userLogin() {
+    wx.showLoading({ mask: true })
     wx.login({
       success: res => {
         // console.log('用户登录成功：', res.code)
         this.login(res.code)
+
       },
       fail: res => {
         console.log('用户登录失败：', res)
+      },
+      complete() {
+        wx.hideLoading()
       }
     })
   },
 
   // 登录验证
-  login (code) {
+  login(code) {
     post({
       url: api.loginSys + code,
       success: res => {
@@ -40,13 +51,13 @@ Page({
         this.setUser(user)
         console.log('用户信息：', user)
         this.getSysConfig(user.Id)
-        this.setData({needUserAuth: !user.Mobile})
+        this.setData({ needUserAuth: !user.Mobile })
       }
     })
   },
 
   // 获取系统配置
-  getSysConfig (id) {
+  getSysConfig(id) {
     post({
       url: api.sysConfig + id,
       success: res => {
@@ -57,8 +68,8 @@ Page({
   },
 
   // 新用户，申请用户授权电话信息
-  getPhoneNumber (e) {
-    const { detail: { iv, encryptedData} } = e
+  getPhoneNumber(e) {
+    const { detail: { iv, encryptedData } } = e
     // console.log(e)
     // console.log(e.detail.errMsg)
     if (e.detail.errMsg.includes('deny')) {
@@ -84,9 +95,9 @@ Page({
     })
   },
 
-  jump2Next () {
+  jump2Next() {
     wx.redirectTo({
-      url: '/pages/checkIn/index',
+      url: '/pages/agreement/index',
     })
   }
 })
