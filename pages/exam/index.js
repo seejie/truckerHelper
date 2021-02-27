@@ -1,8 +1,8 @@
 import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
 import { store } from '../../store/index'
-import {post} from '../../api/methods'
-import {api} from '../../api/index'
-import {guid} from '../../lib/utils'
+import { post } from '../../api/methods'
+import { api } from '../../api/index'
+import { guid } from '../../lib/utils'
 
 Page({
   behaviors: [storeBindingsBehavior],
@@ -14,14 +14,14 @@ Page({
     questions: []
   },
 
-  onLoad () {
+  onLoad() {
     this.getQuestions()
     this.initFun()
   },
 
   // 获取考题
-  getQuestions () {
-    const {Id} = this.data.user
+  getQuestions() {
+    const { Id } = this.data.user
     post({
       url: api.getExamData + Id,
       success: res => {
@@ -30,26 +30,34 @@ Page({
           el.selected = ''
           return el
         })
-        this.setData({questions})
+        this.setData({ questions })
       }
     })
   },
 
   // 结束考试
-  onSubmit () {
+  onSubmit() {
     // console.log(this.data.questions)
-    const {questions} = this.data
+    const { questions } = this.data
     let score = 0
     questions.forEach(el => {
-      const {AnswerList, selected} = el
+      const { AnswerList, selected } = el
       const obj = AnswerList[selected]
       if (selected === '') return
-      const {IsCorrect, AnswerValue} = obj
+      const { IsCorrect, AnswerValue } = obj
       if (!IsCorrect) return
-      score+=AnswerValue
+      score += AnswerValue
     })
 
-    const config = this.data.sysConfig.find(el=> el.category === 'ExamPassScore')
+    //判断是否所有题目都答了
+    if(questions.some(item => item.selected === '')) {
+      return wx.showToast({
+        title:'请答完所有题目',
+        icon:'none'
+      })
+    }
+
+    const config = this.data.sysConfig.find(el => el.category === 'ExamPassScore')
     const date = new Date()
     date.setDate(date.getDate() + 10)
     const exp = date.format('yyyy/MM/dd')
@@ -73,25 +81,29 @@ Page({
       success: res => {
         if (!res.confirm) return
         const answers = questions.map(el => {
-          const {QuestionId, Content, Sequence, QuestionType, AnswerList, selected} = el
-          const {Answer, AnswerValue, Sequence: idx} = AnswerList[selected]
+          const { QuestionId, Content, Sequence, QuestionType, AnswerList, selected } = el
+          const { AnswerId,Answer, AnswerValue, Sequence: idx, IsCorrect } = AnswerList[selected]
 
           return {
             QuestionId,
             Content,
             Sequence,
-            QuestionType: QuestionType === '单选' ? 1:2,
+            QuestionType: QuestionType === '单选' ? '1' : '2',
             QuestionScore: AnswerValue,
-            Answers: {
+            QuestionValue: el.QuestionValue,
+            AnswerList: [{
+              AnswerId,
               Answer,
               AnswerValue,
-              Sequence: idx
-            }
+              Sequence: idx,
+              IsCorrect
+            }]
+
           }
         })
 
         const now = new Date().format('yyyy-MM-dd HH:mm:ss')
-        const {Id} = this.data.user
+        const { Id } = this.data.user
 
         const data = {
           ScoreId: guid().replace(/\-/g, ''),
@@ -101,12 +113,12 @@ Page({
           IsPassing: isPass ? 1 : 0,
           Questions: answers
         }
-      
+
         post({
           url: api.submitAnswer,
           data,
           success: res => {
-            wx.redirectTo({url})
+            wx.redirectTo({ url })
           }
         })
       }
@@ -114,28 +126,28 @@ Page({
   },
 
   // 回到
-  onAnswer (e) {
+  onAnswer(e) {
     const idx = e.currentTarget.dataset.idx
     const val = e.detail
-    const {questions} = this.data
+    const { questions } = this.data
     questions[idx].selected = val
-    this.setData({questions})
+    this.setData({ questions })
   },
 
-  initFun () {
+  initFun() {
     Date.prototype.format = function (fmt) {
       var o = {
-          "M+": this.getMonth() + 1, //月份 
-          "d+": this.getDate(), //日 
-          "H+": this.getHours(), //小时 
-          "m+": this.getMinutes(), //分 
-          "s+": this.getSeconds(), //秒 
-          "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
-          "S": this.getMilliseconds() //毫秒 
+        "M+": this.getMonth() + 1, //月份 
+        "d+": this.getDate(), //日 
+        "H+": this.getHours(), //小时 
+        "m+": this.getMinutes(), //分 
+        "s+": this.getSeconds(), //秒 
+        "q+": Math.floor((this.getMonth() + 3) / 3), //季度 
+        "S": this.getMilliseconds() //毫秒 
       };
       if (/(y+)/.test(fmt)) fmt = fmt.replace(RegExp.$1, (this.getFullYear() + "").substr(4 - RegExp.$1.length));
       for (var k in o)
-      if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
+        if (new RegExp("(" + k + ")").test(fmt)) fmt = fmt.replace(RegExp.$1, (RegExp.$1.length == 1) ? (o[k]) : (("00" + o[k]).substr(("" + o[k]).length)));
       return fmt;
     }
   }

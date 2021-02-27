@@ -2,5 +2,6 @@
   "usingComponents": {
     "sideBar": "../../component/sideBar"
   },
-  "navigationBarTitleText": "个人中心"
+  "navigationBarTitleText": "个人中心",
+  "navigationBarBackgroundColor":"#2C3CCB"
 }
