@@ -9,7 +9,7 @@ Component({
   storeBindings: {
     store,
     fields: ['user', 'currTab', 'sysConfig', 'DeliveryNo', 'deliverAddr', 'currLoc', 'distance'],
-    actions: ['setDockNo', 'setCheckInTime']
+    actions: ['setDockNo', 'setCheckInTime', 'setOrderStatus']
   },
   watch: {
     currTab: function(tab) {
@@ -32,6 +32,7 @@ Component({
             console.log('订单状态：', res.view)
             
             const {DockNo, CheckInTime} = res.view
+            this.setOrderStatus(OrderStatus)
             this.setDockNo(DockNo)
             this.setCheckInTime(CheckInTime)
           }

@@ -1,10 +1,19 @@
-<view class="tips">
+<view class="tips" wx:if="{{OrderStatus !== '7' && OrderStatus !== '8' }}">
   <image class="tips-icon" src="../../../../img/info.png"></image>
   请仔细检查物料的装运情况，待装车完毕后，请扫描装运单条码后，点击“确认发车”
 </view>
 
+<view class="tips" wx:if="{{OrderStatus === '7'}}">
+  <image class="tips-icon" src="../../../../img/info.png"></image>
+  订单{{DeliveryNo}}已经完成配送。如需配送新订单，请点击下方“添加订单”按钮
+</view>
+
+<view class="tips" wx:if="{{OrderStatus === '8'}}">
+  <image class="tips-icon" src="../../../../img/info.png"></image>
+  订单{{DeliveryNo}}已经被拒收，请联系发货供应商，按照供应商要求进行处理
+</view>
+
 <view class="input-order">
-  <!-- <input type="text"  bindinput="oninput" value="{{orderNo}}"/> -->
   <van-field
     value="{{ orderNo }}"
     placeholder="请扫描订单或手动输入"

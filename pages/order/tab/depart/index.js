@@ -45,7 +45,6 @@ Component({
       post({
         url: api.getMaterialDetail + Id + `&deliveryNo=${DeliveryNo}`,
         success: res => {
-          console.log(res, 1111)
           const {Lines, ShipTo, SWETTime} = res.View
           this.setData({
             materials: Lines,
@@ -53,7 +52,6 @@ Component({
             arriveTime: SWETTime || ''
           })
           this.setDeliverAddr(ShipTo)
-          console.log(ShipTo, 111)
         }
       })
     },

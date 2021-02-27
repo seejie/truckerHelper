@@ -12,11 +12,13 @@ const state = {
   CheckInTime: '',
   DeliveryNo: '',
   // 显示虚拟键盘
-  showKeyboard: false
+  showKeyboard: false,
+  OrderStatus: ''
 }
 
 export const store = observable({
   ...state,
+  // todo
   // ...mock,
 
   // actions
@@ -53,5 +55,8 @@ export const store = observable({
   }),
   toggleShowKeyboard: action(function (payload) {
     this.showKeyboard = payload
+  }),
+  setOrderStatus: action(function (payload) {
+    this.OrderStatus = payload
   })
 })

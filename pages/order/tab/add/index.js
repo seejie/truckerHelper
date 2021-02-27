@@ -8,7 +8,7 @@ Component({
   behaviors: [storeBindingsBehavior],
   storeBindings: {
     store,
-    fields: ['user'],
+    fields: ['user', 'DeliveryNo', 'OrderStatus'],
     actions: ['setDeliveryNo']
   },
   data: {

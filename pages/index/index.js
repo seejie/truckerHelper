@@ -7,7 +7,7 @@ Page({
   behaviors: [storeBindingsBehavior],
   storeBindings: {
     store,
-    actions: ['setUser', 'setSysConfig', 'setCurrTab', 'setDeliveryNo']
+    actions: ['setUser', 'setSysConfig', 'setCurrTab', 'setDeliveryNo', 'setOrderStatus']
   },
   data: {
     needUserAuth: false,
@@ -86,7 +86,8 @@ Page({
             currTab = 'queue'
             break
         }
-
+        
+        this.setOrderStatus(OrderStatus)
         this.setDeliveryNo(DeliveryNo)
         this.setCurrTab(currTab)
         wx.redirectTo({ url: '/pages/order/index' })
@@ -120,6 +121,9 @@ Page({
     console.log(iv)
     console.log(encryptedData)
 
+    this.jump2Next()
+    // todo：解密用户信息，接口暂时无法提供
+    return
     post({
       url: api.getUserRealInfo,
       data: {
