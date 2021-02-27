@@ -12,8 +12,8 @@ Component({
   behaviors: [storeBindingsBehavior, computedBehavior],
   storeBindings: {
     store,
-    fields: ['user', 'currTab', 'sysConfig', 'deliverAddr', 'currLoc', 'distance'],
-    actions: ['setCurrLoc', 'setDistance']
+    fields: ['user', 'currTab', 'sysConfig', 'deliverAddr', 'currLoc', 'distance', 'stopReportLoc'],
+    actions: ['setCurrLoc', 'setDistance', 'setStopReportLoc']
   },
   data: {
     latitude: undefined,
@@ -53,7 +53,13 @@ Component({
       const frequency = config.key_name
       console.log('上报间隔：', frequency)
 
+      let timer = null
       const request = () => {
+        if (this.stopReportLoc) {
+          clearInterval(timer)
+          return
+        }
+
         post({
           url: api.reportLocation + `${Id}&longitude=${longitude}&latitude=${latitude}`,
           success: res => {
@@ -64,7 +70,8 @@ Component({
       }
 
       request()
-      setInterval(request, +frequency * 1000)
+      timer = setInterval(request, +frequency * 1000)
+      this.setStopReportLoc(false)
     },
 
     // 获取真实地理信息

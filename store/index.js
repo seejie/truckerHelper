@@ -13,7 +13,9 @@ const state = {
   DeliveryNo: '',
   // 显示虚拟键盘
   showKeyboard: false,
-  OrderStatus: ''
+  OrderStatus: '',
+  stopReportLoc: false,
+  stopCheckStatus: false,
 }
 
 export const store = observable({
@@ -58,5 +60,11 @@ export const store = observable({
   }),
   setOrderStatus: action(function (payload) {
     this.OrderStatus = payload
-  })
+  }),
+  setStopReportLoc: action(function (payload) {
+    this.stopReportLoc = payload
+  }),
+  setStopCheckStatus: action(function (payload) {
+    this.stopCheckStatus = payload
+  }),
 })

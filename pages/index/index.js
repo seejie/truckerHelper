@@ -7,7 +7,7 @@ Page({
   behaviors: [storeBindingsBehavior],
   storeBindings: {
     store,
-    actions: ['setUser', 'setSysConfig', 'setCurrTab', 'setDeliveryNo', 'setOrderStatus']
+    actions: ['setUser', 'setSysConfig', 'setCurrTab', 'setDeliveryNo', 'setOrderStatus', 'setStopReportLoc']
   },
   data: {
     needUserAuth: false,
@@ -86,7 +86,15 @@ Page({
             currTab = 'queue'
             break
         }
-        
+
+        // 待叫号，停止上报位置
+        if (OrderStatus === '2') {
+          this.setStopReportLoc(true)
+        } else if (OrderStatus === '7' || OrderStatus === '8') {
+          // 卸货完成，停止查询状态
+          this.setStopCheckStatus(true)
+        }
+
         this.setOrderStatus(OrderStatus)
         this.setDeliveryNo(DeliveryNo)
         this.setCurrTab(currTab)
