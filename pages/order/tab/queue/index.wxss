@@ -7,9 +7,7 @@
   font-size: 34rpx;
   padding: 28rpx 28rpx 28rpx 0;
   margin-left: 30rpx;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  display: flex;
 }
 
 .cell + .cell{
@@ -21,3 +19,11 @@
   width: 240rpx;
 }
 
+.value{
+  width: calc(100% - 240rpx);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}

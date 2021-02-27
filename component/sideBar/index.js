@@ -31,7 +31,7 @@ Component({
       const app = getApp()
       app.globalData.activeTabBar = 'order'
       wx.redirectTo({
-        url: '/pages/order/index',
+        url: '/pages/index/index',
       })
     },
     switchMyPage () {

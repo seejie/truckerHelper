@@ -8,9 +8,7 @@
   font-size: 34rpx;
   padding: 28rpx 28rpx 28rpx 0;
   margin-left: 30rpx;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
+  display: flex;
 }
 
 .cell + .cell{
@@ -22,17 +20,24 @@
   width: 240rpx;
 }
 
+.value{
+  width: calc(100% - 240rpx);
+  text-overflow: ellipsis;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+}
+
 .arrive-wrapper{
   display: flex;
   flex-direction: column;
-  /* height: calc(100vh - 246rpx); */
   height: 100%;
 }
 
 /* 提示信息 */
 .tips{
   color: #999;
-  /* margin: 45rpx 30rpx; */
   margin: 15rpx 30rpx;
   align-items: start;
 }

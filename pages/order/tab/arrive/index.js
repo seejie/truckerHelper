@@ -168,6 +168,8 @@ Component({
 
     // 引导用户授权后台上报位置
     requestUserAuth () {
+      // todo
+      // return
       wx.showModal({
         title: '温馨提示',
         content: '请您开启使用小程序期间和离开小程序后，均可检测位置信息~',

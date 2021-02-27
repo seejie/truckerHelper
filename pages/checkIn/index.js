@@ -439,8 +439,6 @@ Page({
         console.log(res, 2222)
         const {subscriptionsSetting: {itemSettings, mainSwitch}} = res
         console.log(res)
-        console.log(mainSwitch)
-        console.log(itemSettings && itemSettings[tmpId])
         !mainSwitch && this.openUserAuthSetting()
         if (itemSettings && itemSettings[tmpId]) {
           this.jump2next()

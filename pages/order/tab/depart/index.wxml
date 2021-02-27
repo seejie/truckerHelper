@@ -3,7 +3,8 @@
     <view class="tag">送货单号：</view>{{DeliveryNo}}
   </view>
   <view class="cell">
-    <view class="tag">送货地址：</view>{{address}}
+    <view class="tag">送货地址：</view>
+    <view class="value">{{address}}</view>
   </view>
   <view class="cell">
     <view class="tag">要求到达时间：</view>{{arriveTime}}

@@ -16,7 +16,8 @@ Page({
     motto: '开启小程序之旅',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    version: '1.0'
   },
   // 事件处理函数
   bindViewTap() {
@@ -61,6 +62,7 @@ Page({
    */
   onShow() {
     console.log('show...')
+    this.getVision()
   },
   /**
    * 页面准备完毕
@@ -82,5 +84,10 @@ Page({
     wx.switchTab({
       url: '/pages/list/list',
     })
+  },
+
+  getVision () {
+    const info = wx.getAccountInfoSync()
+    this.setData({version: info.miniProgram.version})
   }
 })

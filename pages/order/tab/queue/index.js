@@ -48,6 +48,7 @@ Component({
       // }, 3000)
 
       // 判断订单状态，待卸货
+      // todo
       setTimeout(() => {
         this.triggerEvent('tabChaned', {currTab: 'unload'}, {})
       }, 6000)

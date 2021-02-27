@@ -2,13 +2,12 @@ import { storeBindingsBehavior } from 'mobx-miniprogram-bindings'
 import { store } from '../../store/index'
 import { post } from '../../api/methods'
 import { api } from '../../api/index'
-import { toast } from '../../lib/utils'
 
 Page({
   behaviors: [storeBindingsBehavior],
   storeBindings: {
     store,
-    actions: ['setUser', 'setSysConfig']
+    actions: ['setUser', 'setSysConfig', 'setCurrTab', 'setDeliveryNo']
   },
   data: {
     needUserAuth: false,
@@ -50,12 +49,50 @@ Page({
         this.setUser(user)
         console.log('用户信息：', user)
         const {DeliveryOrderNo} = user
+        // todo
         if (!DeliveryOrderNo) {
+        // if (true) {
           this.getSysConfig(user.Id)
           this.setData({ needUserAuth: !user.Mobile })
         } else {
-          console.log(2)
+          this.getSysConfig(user.Id)
+          this.getOrderInfo(user.Id, DeliveryOrderNo)
         }
+      }
+    })
+  },
+
+  getOrderInfo (Id, DeliveryNo) {
+    wx.showLoading({ mask: true })
+    post({
+      url: api.getOrderInfo + Id + `&deliveryNo=${DeliveryNo}`,
+      success: res => {
+        console.log('订单状态：', res.view)
+        const {OrderStatus} = res.view
+
+        let currTab
+        switch (OrderStatus) {
+          // 未到达
+          case '1': 
+            currTab = 'depart'
+            break
+          case '2': 
+            currTab = 'arrive'
+            break
+          case '3': 
+            currTab = 'queue'
+            break
+          case '4': case '5': case '6': case '7': case '8': 
+            currTab = 'queue'
+            break
+        }
+
+        this.setDeliveryNo(DeliveryNo)
+        this.setCurrTab(currTab)
+        wx.redirectTo({ url: '/pages/order/index' })
+      },
+      complete: res => {
+        wx.hideLoading()
       }
     })
   },
