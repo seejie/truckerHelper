@@ -16,5 +16,6 @@
   >
     开始录入人员基本信息
   </button>
+
   <sideBar />
 </view>

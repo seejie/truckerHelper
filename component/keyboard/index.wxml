@@ -1,7 +1,7 @@
 <view class="page">
   <!-- 车牌号码输入框 -->
   <view class="carNumber">
-    <view class="weui-cells__title">请输入车牌号码后在使用</view>
+    <view class="weui-cells__title">请输入车牌号</view>
     <!-- 车牌号头两位 -->
     <view class="carNumber-items">
       <view class="carNumber-items-box" bindtap='openKeyboard'>

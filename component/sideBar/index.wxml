@@ -4,7 +4,7 @@
     订单
   </view>
   <view class="icon-bar {{currTab === 'my' ? 'active' : ''}}" bindtap="switchMyPage">
-    <image class="img" src="../../img/my.png"></image>
+    <image class="img" src="{{myImg}}"></image>
     我的
   </view>
 </view>
